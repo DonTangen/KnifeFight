@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bj7gdgsnvgmp0"]
+
+[ext_resource type="Texture2D" uid="uid://dfnwm0u4sanq1" path="res://assets/32 Free Weapon Icons/Icons/Iicon_32_01.png" id="1_6bj5a"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_uj3do"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qhb62"]
+radius = 2.1298
+height = 42.4578
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_uj3do")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(16, -16)
+texture = ExtResource("1_6bj5a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(16, -16)
+rotation = 0.785398
+shape = SubResource("CapsuleShape2D_qhb62")
