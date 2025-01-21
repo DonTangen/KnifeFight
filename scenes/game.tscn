@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cordc2owd3p8y" path="res://assets/Sprites/14-TileSets/Terrain (32x32).png" id="2_567as"]
 [ext_resource type="Texture2D" uid="uid://dxclxjclegx28" path="res://assets/Sprites/14-TileSets/Decorations (32x32).png" id="2_svggb"]
-[ext_resource type="PackedScene" uid="uid://f3prme8ugx45" path="res://scenes/sword_playerv_2.tscn" id="3_uok37"]
+[ext_resource type="PackedScene" uid="uid://bwjlqx13ye2sy" path="res://scenes/sword_player.tscn" id="3_pxbj5"]
 [ext_resource type="PackedScene" uid="uid://5x6uiackw4fa" path="res://scenes/coin.tscn" id="5_2rjnq"]
 [ext_resource type="PackedScene" uid="uid://upe0adekrunx" path="res://scenes/killzone.tscn" id="6_chwyg"]
 [ext_resource type="PackedScene" uid="uid://brodjchsu5qsm" path="res://scenes/one_way_platform_big.tscn" id="6_l7m1g"]
@@ -230,6 +230,22 @@ sources/0 = SubResource("TileSetAtlasSource_3c6dm")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_118ed"]
 
+[sub_resource type="Animation" id="Animation_ax33b"]
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OneWayPlatforms/OneWayPlatformSmall3:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-176, -137), Vector2(91, -137)]
+}
+
 [sub_resource type="Animation" id="Animation_k2lys"]
 resource_name = "move"
 length = 2.0
@@ -245,22 +261,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-175, -137), Vector2(82, -137)]
-}
-
-[sub_resource type="Animation" id="Animation_ax33b"]
-length = 2.0
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("OneWayPlatforms/OneWayPlatformSmall3:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-176, -137), Vector2(91, -137)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v3ktw"]
@@ -285,10 +285,11 @@ position = Vector2(2, 0)
 tile_map_data = PackedByteArray("AAADAP3/AAABAAEAAAADAP7/AAABAAIAAAADAP//AAABAAQAAAAGAP3/AAABAAEAAAAGAP7/AAABAAIAAAAGAP//AAABAAQAAAAFAAAAAAACAAMAAAD//wAAAAAEAAMAAAD6/wAAAAACAAMAAAD3//r/AAAEAAMAAAD8//r/AAACAAMAAAABAPr/AAACAAMAAAAFAPr/AAACAAMAAAD5//j/AAACAAIAAAD6//j/AAADAAIAAAD7//j/AAADAAIAAAD8//j/AAAEAAIAAAD///j/AAAFAAIAAAADAPj/AAAEAAIAAAD9//j/AAADAAIAAAD+//j/AAADAAIAAAAAAPj/AAADAAIAAAABAPj/AAADAAIAAAACAPj/AAADAAIAAAD8//b/AAACAAMAAAABAPb/AAAEAAMAAAD9//X/AAABAAEAAAD9//b/AAABAAIAAAD9//f/AAABAAMAAAACAPX/AAABAAEAAAACAPb/AAABAAIAAAACAPf/AAABAAQAAAA=")
 tile_set = SubResource("TileSet_l4nga")
 
-[node name="SwordPlayerv2" parent="." instance=ExtResource("3_uok37")]
-position = Vector2(353, -49)
+[node name="SwordPlayer" parent="." instance=ExtResource("3_pxbj5")]
+position = Vector2(348, -110)
 
-[node name="Camera2D" type="Camera2D" parent="SwordPlayerv2"]
+[node name="Camera2D" type="Camera2D" parent="SwordPlayer"]
+position = Vector2(5, -4)
 zoom = Vector2(2, 2)
 limit_bottom = 270
 limit_smoothed = true
