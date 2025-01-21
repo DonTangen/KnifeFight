@@ -8,6 +8,9 @@ radius = 2.1298
 height = 42.4578
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 5
+collision_layer = 2
+floor_stop_on_slope = false
 script = ExtResource("1_uj3do")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

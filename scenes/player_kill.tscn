@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://f0lnreii1fw1"]
+
+[ext_resource type="Script" path="res://scripts/player_kill.gd" id="1_3xq8v"]
+
+[node name="PlayerKill" type="Area2D"]
+script = ExtResource("1_3xq8v")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
