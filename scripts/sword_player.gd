@@ -35,6 +35,7 @@ var is_charging = 0
 @onready var ray_cast_13: RayCast2D = $RayCasts/RayCast2D13
 @onready var ray_cast_14: RayCast2D = $RayCasts/RayCast2D14
 @onready var timer: Timer = $Timer
+@onready var moving_particles: GPUParticles2D = $MovingParticles
 
 func _integrate_forces(_state: PhysicsDirectBodyState2D) -> void:
 	# Get the input direction and handle the movement/deceleration.
@@ -43,7 +44,7 @@ func _integrate_forces(_state: PhysicsDirectBodyState2D) -> void:
 		direction = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	var velocity = Vector2(direction, 0) * speed
 	var mouse_pos = get_global_mouse_position()
-	
+
 	match n:
 		1:
 			if not (ray_cast.is_colliding() or ray_cast_2.is_colliding() or ray_cast_6.is_colliding()):
@@ -69,6 +70,8 @@ func _integrate_forces(_state: PhysicsDirectBodyState2D) -> void:
 			if not (ray_cast.is_colliding() or ray_cast_2.is_colliding() or ray_cast_6.is_colliding()):
 				self.rotation_degrees += attack_rotation / 6.0
 			n = 0
+			moving_particles.amount = 8
+			moving_particles.emitting = false
 
 	# Add the gravity.
 	#velocity += get_gravity()
@@ -78,6 +81,7 @@ func _integrate_forces(_state: PhysicsDirectBodyState2D) -> void:
 		# Rotation
 		if Input.is_action_pressed("rotate_left") and is_stuck == 0:
 			self.freeze = false
+			moving_particles.emitting = false
 			self.gravity_scale = 1
 			if n == 0:
 				if not ray_cast.is_colliding():
@@ -85,6 +89,7 @@ func _integrate_forces(_state: PhysicsDirectBodyState2D) -> void:
 					self.angular_velocity = 2
 		if Input.is_action_pressed("rotate_right") and is_stuck == 0:
 			self.freeze = false
+			moving_particles.emitting = false
 			self.gravity_scale = 1
 			if n == 0:
 				if not ray_cast_3.is_colliding():
@@ -98,34 +103,38 @@ func _integrate_forces(_state: PhysicsDirectBodyState2D) -> void:
 			if (ray_cast.is_colliding() or ray_cast_2.is_colliding() or ray_cast_3.is_colliding() or ray_cast_4.is_colliding() or ray_cast_5.is_colliding() or ray_cast_6.is_colliding()) and is_stuck != 1:
 				apply_central_impulse(Vector2(0, JUMP_VELOCITY))
 			is_stuck = 0
+			moving_particles.emitting = false
 		# Sword Swing
 		if Input.is_action_just_pressed("attack-deflect") and is_stuck == 0:
 			if n == 0:
+				moving_particles.emitting = true
+				moving_particles.amount_ratio = 4
 				if not (ray_cast.is_colliding() or ray_cast_2.is_colliding() or ray_cast_6.is_colliding()):
 					self.rotation_degrees += attack_rotation / 6.0
 					self.angular_velocity = 7
 					n = 1
 		# Lunging Attack
 		if Input.is_action_pressed("lunge"):
-			reset_position()
+			if is_stuck == 1: reset_position()
 			if ray_cast.is_colliding() or ray_cast_2.is_colliding() or ray_cast_3.is_colliding() or ray_cast_4.is_colliding() or ray_cast_5.is_colliding() or ray_cast_6.is_colliding() or is_stuck == 1 or is_charging == 1:
 				is_charging = 1
 				is_stuck = 0
+				moving_particles.emitting = false
 				self.apply_force(Vector2(0,0), Vector2(0,0))
 				look_at(mouse_pos)
 				self.rotation_degrees += 90
-				if power <= 7:
-					sprite.position.y += 2
+				if power <= 7: sprite.position.y += 2
 				power += 1
-				if power > 8:
-					power = 8
+				if power > 8: power = 8
 		if Input.is_action_just_released("lunge"):
 			self.freeze = false
 			self.gravity_scale = 1
+			moving_particles.emitting = true
+			if not (ray_cast.is_colliding() or ray_cast_2.is_colliding() or ray_cast_3.is_colliding() or ray_cast_4.is_colliding() or ray_cast_5.is_colliding() or ray_cast_6.is_colliding() or ray_cast_7.is_colliding() or ray_cast_8.is_colliding() or ray_cast_9.is_colliding() or ray_cast_10.is_colliding() or ray_cast_11.is_colliding()):
+				moving_particles.emitting = false
 			is_lunging = 1
 			is_charging = 0
-			if is_lunging == 0 and is_stuck == 0:
-				sprite.position.y -= 16
+			if is_lunging == 0 and is_stuck == 0: sprite.position.y -= 16
 			apply_central_impulse((Vector2(0, -power*1.25).rotated(self.rotation))*launch)
 			lunge_direction = self.position - previous_pos
 			power = 0
@@ -138,16 +147,16 @@ func _integrate_forces(_state: PhysicsDirectBodyState2D) -> void:
 			is_lunging = 0
 			timer_expired = 0
 			is_stuck = 1
+			moving_particles.emitting = false
 		if (ray_cast.is_colliding() or ray_cast_3.is_colliding() or ray_cast_4.is_colliding() or ray_cast_5.is_colliding() or ray_cast_6.is_colliding() or ray_cast_7.is_colliding() or ray_cast_8.is_colliding() or ray_cast_9.is_colliding() or ray_cast_10.is_colliding() or ray_cast_11.is_colliding() or ray_cast_12.is_colliding()) and is_lunging == 1 and timer_expired == 1:
 			self.freeze = false
 			self.gravity_scale = 1
 			is_lunging = 0
+			moving_particles.emitting = false
 			timer_expired = 0
 		# Apply movement
-		if direction:
-			self.apply_force(velocity, Vector2(0,0))
-		else:
-			self.apply_force(-velocity, Vector2(0,0))
+		if direction: self.apply_force(velocity, Vector2(0,0))
+		else: self.apply_force(-velocity, Vector2(0,0))
 
 	if not is_instance_valid(collision_shape):
 		self.apply_force(-velocity, Vector2(0,0))
