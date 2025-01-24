@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://ic0y2tbq4388"]
+[gd_scene load_steps=18 format=4 uid="uid://ic0y2tbq4388"]
 
 [ext_resource type="Texture2D" uid="uid://cordc2owd3p8y" path="res://assets/Sprites/14-TileSets/Terrain (32x32).png" id="2_567as"]
 [ext_resource type="Texture2D" uid="uid://dxclxjclegx28" path="res://assets/Sprites/14-TileSets/Decorations (32x32).png" id="2_svggb"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://brodjchsu5qsm" path="res://scenes/one_way_platform_big.tscn" id="6_l7m1g"]
 [ext_resource type="PackedScene" uid="uid://1ooyai65ai6p" path="res://scenes/one_way_platform_small.tscn" id="7_kyjnp"]
 [ext_resource type="PackedScene" uid="uid://beroim3bxc3dn" path="res://scenes/pig.tscn" id="8_etwnv"]
+[ext_resource type="AudioStream" uid="uid://bxodl0gj7xg3v" path="res://assets/Music/GameJamAwesomeHook.mp3" id="9_6ow23"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0uv3l"]
 texture = ExtResource("2_567as")
@@ -286,7 +287,7 @@ tile_map_data = PackedByteArray("AAADAP3/AAABAAEAAAADAP7/AAABAAIAAAADAP//AAABAAQ
 tile_set = SubResource("TileSet_l4nga")
 
 [node name="SwordPlayer" parent="." instance=ExtResource("3_pxbj5")]
-position = Vector2(348, -110)
+position = Vector2(-46, -264)
 
 [node name="Camera2D" type="Camera2D" parent="SwordPlayer"]
 position = Vector2(5, -4)
@@ -381,3 +382,8 @@ position = Vector2(434, 17)
 
 [node name="OneWayPlatformSmall5" parent="OneWayPlatforms" instance=ExtResource("7_kyjnp")]
 position = Vector2(273, 18)
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_6ow23")
+autoplay = true
+bus = &"Music"
