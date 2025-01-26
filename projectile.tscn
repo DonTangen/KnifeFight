@@ -1,12 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://cyd06jgro6ux"]
 
 [ext_resource type="Script" path="res://projectile.gd" id="1_gevd1"]
-[ext_resource type="Texture2D" uid="uid://cr426q8los256" path="res://Assets/10-Cannon/Cannon Ball.png" id="2_ad2hx"]
+[ext_resource type="Texture2D" uid="uid://qmtjr0jl40kj" path="res://assets/Sprites/10-Cannon/Cannon Ball.png" id="2_11f33"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yihm7"]
 radius = 6.40312
 
 [node name="Projectile" type="CharacterBody2D"]
+z_index = 2
 scale = Vector2(2, 2)
 collision_mask = 3
 slide_on_ceiling = false
@@ -21,7 +22,6 @@ shape = SubResource("CircleShape2D_yihm7")
 
 [node name="CannonBall" type="Sprite2D" parent="."]
 position = Vector2(-7, -5)
-texture = ExtResource("2_ad2hx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_yihm7")
@@ -29,6 +29,11 @@ shape = SubResource("CircleShape2D_yihm7")
 [node name="Life" type="Timer" parent="."]
 wait_time = 7.0
 autostart = true
+
+[node name="CannonBall2" type="Sprite2D" parent="."]
+position = Vector2(-6.75, -4.5)
+scale = Vector2(0.965909, 0.964286)
+texture = ExtResource("2_11f33")
 
 [connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]
 [connection signal="timeout" from="Life" to="." method="_on_life_timeout"]
