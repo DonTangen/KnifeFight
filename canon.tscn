@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dky8gusnxdsim"]
+[gd_scene load_steps=3 format=3 uid="uid://ducxc3lmrylrw"]
 
 [ext_resource type="Script" path="res://canon.gd" id="1_lediw"]
 [ext_resource type="Texture2D" uid="uid://878kpyqdwrld" path="res://assets/Sprites/10-Cannon/Idle.png" id="2_42xpn"]

@@ -89,7 +89,7 @@ func _integrate_forces(_state: PhysicsDirectBodyState2D) -> void:
 					self.angular_velocity = 2
 		if Input.is_action_pressed("rotate_right") and is_stuck == 0:
 			self.freeze = false
-			moving_particles.emitting = false
+a			moving_particles.emitting = false
 			self.gravity_scale = 1
 			if n == 0:
 				if not ray_cast_3.is_colliding():
