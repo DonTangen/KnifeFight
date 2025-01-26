@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var main = get_tree().get_root().get_node("World")
+@onready var main = get_tree().get_root().get_node("Game")
 @onready var projectile = load("res://projectile.tscn")
 
 
