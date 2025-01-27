@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b60qrpeaxpq3k"]
+
+[ext_resource type="Script" path="res://canon.gd" id="1_njuqi"]
+[ext_resource type="Texture2D" uid="uid://878kpyqdwrld" path="res://assets/Sprites/10-Cannon/Idle.png" id="2_eiaof"]
+
+[node name="Canon" type="Node2D"]
+script = ExtResource("1_njuqi")
+
+[node name="Idle" type="Sprite2D" parent="."]
+position = Vector2(1, 0)
+texture = ExtResource("2_eiaof")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
