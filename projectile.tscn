@@ -20,9 +20,6 @@ collision_priority = 0.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_yihm7")
 
-[node name="CannonBall" type="Sprite2D" parent="."]
-position = Vector2(-7, -5)
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_yihm7")
 
