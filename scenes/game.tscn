@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cordc2owd3p8y" path="res://assets/Sprites/14-TileSets/Terrain (32x32).png" id="2_567as"]
 [ext_resource type="Texture2D" uid="uid://dxclxjclegx28" path="res://assets/Sprites/14-TileSets/Decorations (32x32).png" id="2_svggb"]
-[ext_resource type="PackedScene" path="res://scenes/sword_player.tscn" id="3_pxbj5"]
+[ext_resource type="PackedScene" uid="uid://bwjlqx13ye2sy" path="res://scenes/sword_player.tscn" id="3_pxbj5"]
 [ext_resource type="Texture2D" uid="uid://bdb31i5bhluqj" path="res://assets/32 Free Weapon Icons/Icons/Iicon_32_22.png" id="4_kkd5n"]
 [ext_resource type="PackedScene" path="res://scenes/coin.tscn" id="5_2rjnq"]
 [ext_resource type="PackedScene" path="res://scenes/killzone.tscn" id="6_chwyg"]
@@ -230,7 +230,7 @@ tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_3c6dm")
 
-[sub_resource type="Shader" id="Shader_qpp0u"]
+[sub_resource type="Shader" id="Shader_xnc8y"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's CanvasItemMaterial.
 
 shader_type canvas_item;
@@ -255,7 +255,7 @@ void vertex() {
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ldepx"]
-shader = SubResource("Shader_qpp0u")
+shader = SubResource("Shader_xnc8y")
 shader_parameter/particles_anim_h_frames = 1
 shader_parameter/particles_anim_v_frames = 1
 shader_parameter/particles_anim_loop = false
@@ -264,12 +264,12 @@ shader_parameter/particles_anim_loop = false
 _data = [Vector2(0, 0.498132), 0.0, 0.0, 0, 0, Vector2(0.996865, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_s203n"]
+[sub_resource type="CurveTexture" id="CurveTexture_ckl7p"]
 curve = SubResource("Curve_7rxuu")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gx5tj"]
 gravity = Vector3(0, 0, 0)
-alpha_curve = SubResource("CurveTexture_s203n")
+alpha_curve = SubResource("CurveTexture_ckl7p")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_118ed"]
 
