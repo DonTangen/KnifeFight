@@ -73,9 +73,6 @@ func _integrate_forces(_state: PhysicsDirectBodyState2D) -> void:
 			moving_particles.amount = 8
 			moving_particles.emitting = false
 
-	# Add the gravity.
-	#velocity += get_gravity()
-
 	# Fail-safe check for on death collision logic
 	if is_instance_valid(collision_shape):
 		# Rotation
@@ -95,6 +92,8 @@ func _integrate_forces(_state: PhysicsDirectBodyState2D) -> void:
 				if not ray_cast_3.is_colliding():
 					self.rotation_degrees -= rotation_speed
 					self.angular_velocity = 2
+
+
 		# Handle jump.
 		if Input.is_action_just_pressed("jump"):
 			reset_position()
@@ -104,6 +103,8 @@ func _integrate_forces(_state: PhysicsDirectBodyState2D) -> void:
 				apply_central_impulse(Vector2(0, JUMP_VELOCITY))
 			is_stuck = 0
 			moving_particles.emitting = false
+
+
 		# Sword Swing
 		if Input.is_action_just_pressed("attack-deflect") and is_stuck == 0:
 			if n == 0:
@@ -113,7 +114,10 @@ func _integrate_forces(_state: PhysicsDirectBodyState2D) -> void:
 					self.rotation_degrees += attack_rotation / 6.0
 					self.angular_velocity = 7
 					n = 1
+
+
 		# Lunging Attack
+		# Charging
 		if Input.is_action_pressed("lunge"):
 			if is_stuck == 1: reset_position()
 			if ray_cast.is_colliding() or ray_cast_2.is_colliding() or ray_cast_3.is_colliding() or ray_cast_4.is_colliding() or ray_cast_5.is_colliding() or ray_cast_6.is_colliding() or is_stuck == 1 or is_charging == 1:
@@ -126,6 +130,7 @@ func _integrate_forces(_state: PhysicsDirectBodyState2D) -> void:
 				if power <= 7: sprite.position.y += 2
 				power += 1
 				if power > 8: power = 8
+		# Releasing attack
 		if Input.is_action_just_released("lunge"):
 			self.freeze = false
 			self.gravity_scale = 1
@@ -139,28 +144,32 @@ func _integrate_forces(_state: PhysicsDirectBodyState2D) -> void:
 			lunge_direction = self.position - previous_pos
 			power = 0
 			timer.start()
+		# Checking if stab would stick sword in
 		if (ray_cast_2.is_colliding() or ray_cast_13.is_colliding() or ray_cast_14.is_colliding()) and is_lunging == 1 and timer_expired == 1:
-			#self.set_deferred("freeze", true)
-			self.freeze = true
+			self.linear_velocity = Vector2.ZERO
+			self.angular_velocity = 0
 			self.gravity_scale = 0
 			sprite.position.y -= 14
 			is_lunging = 0
 			timer_expired = 0
 			is_stuck = 1
 			moving_particles.emitting = false
+		# Check if stab doesnt stick
 		if (ray_cast.is_colliding() or ray_cast_3.is_colliding() or ray_cast_4.is_colliding() or ray_cast_5.is_colliding() or ray_cast_6.is_colliding() or ray_cast_7.is_colliding() or ray_cast_8.is_colliding() or ray_cast_9.is_colliding() or ray_cast_10.is_colliding() or ray_cast_11.is_colliding() or ray_cast_12.is_colliding()) and is_lunging == 1 and timer_expired == 1:
 			self.freeze = false
 			self.gravity_scale = 1
 			is_lunging = 0
 			moving_particles.emitting = false
 			timer_expired = 0
+
+
 		# Apply movement
 		if direction: self.apply_force(velocity, Vector2(0,0))
 		else: self.apply_force(-velocity, Vector2(0,0))
 
+	# On death mechanics
 	if not is_instance_valid(collision_shape):
 		self.apply_force(-velocity, Vector2(0,0))
-		print("instance not valid")
 	
 	previous_pos = self.position
 	#print("is stuck")

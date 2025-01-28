@@ -1,0 +1,91 @@
+[gd_scene load_steps=7 format=3 uid="uid://biaed4vdyyi1j"]
+
+[ext_resource type="Texture2D" uid="uid://cye3aflfp1t6i" path="res://assets/Sprites/12-Live and Coins/Big Heart Idle (18x14).png" id="1_3n8ng"]
+[ext_resource type="Script" path="res://scripts/lives.gd" id="1_dobh7"]
+[ext_resource type="Texture2D" uid="uid://c800n0fcy0efd" path="res://assets/Sprites/12-Live and Coins/Big Heart Hit (18x14).png" id="3_e7ae4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0ym2"]
+atlas = ExtResource("3_e7ae4")
+region = Rect2(0, 0, 18, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_moqv4"]
+atlas = ExtResource("3_e7ae4")
+region = Rect2(18, 0, 18, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eh6qd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0ym2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_moqv4")
+}],
+"loop": false,
+"name": &"Hit Heart",
+"speed": 5.0
+}]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_dobh7")
+
+[node name="Life1" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(24, 24)
+scale = Vector2(3, 3)
+texture = ExtResource("1_3n8ng")
+region_enabled = true
+region_rect = Rect2(58, 0, 13, 14)
+
+[node name="Life2" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(64, 24)
+scale = Vector2(3, 3)
+texture = ExtResource("1_3n8ng")
+region_enabled = true
+region_rect = Rect2(58, 0, 13, 14)
+
+[node name="Life3" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(104, 24)
+scale = Vector2(3, 3)
+texture = ExtResource("1_3n8ng")
+region_enabled = true
+region_rect = Rect2(58, 0, 13, 14)
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="Hit1" type="AnimatedSprite2D" parent="."]
+z_index = 1
+position = Vector2(24, 24)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_eh6qd")
+animation = &"Hit Heart"
+frame = 1
+frame_progress = 1.0
+
+[node name="Hit2" type="AnimatedSprite2D" parent="."]
+z_index = 1
+position = Vector2(64, 24)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_eh6qd")
+animation = &"Hit Heart"
+frame = 1
+frame_progress = 1.0
+
+[node name="Hit3" type="AnimatedSprite2D" parent="."]
+z_index = 1
+position = Vector2(104, 24)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_eh6qd")
+animation = &"Hit Heart"
+frame = 1
+frame_progress = 1.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
