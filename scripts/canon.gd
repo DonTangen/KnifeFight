@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var main = get_tree().current_scene      #get_root().get_node()
-@onready var projectile = load("res://Scenes/projectile.tscn")
+@onready var projectile = load("res://scenes/projectile.tscn")
 
 
 
