@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dircnsws3tlyw"]
 
-[ext_resource type="Script" path="res://gun.gd" id="1_lls1j"]
+[ext_resource type="Script" path="res://scripts/gun.gd" id="1_dpmg6"]
 [ext_resource type="Texture2D" uid="uid://dhgnox7fsges6" path="res://assets/vector/vector_guns.svg" id="2_ioexl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rxixf"]
@@ -8,7 +8,7 @@ size = Vector2(103.333, 36.6667)
 
 [node name="Gun" type="Node2D"]
 scale = Vector2(0.3, 0.3)
-script = ExtResource("1_lls1j")
+script = ExtResource("1_dpmg6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-62, 19)
