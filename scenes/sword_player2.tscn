@@ -1,0 +1,87 @@
+[gd_scene load_steps=6 format=3 uid="uid://df43nqhw67ecp"]
+
+[ext_resource type="Script" path="res://scripts/sword_player.gd" id="1_cnego"]
+[ext_resource type="Texture2D" uid="uid://bdb31i5bhluqj" path="res://assets/32 Free Weapon Icons/Icons/Iicon_32_22.png" id="2_0fltp"]
+[ext_resource type="PackedScene" path="res://scenes/player_kill.tscn" id="3_4a72r"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_083kb"]
+friction = 0.25
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tfob8"]
+radius = 5.0
+height = 39.598
+
+[node name="SwordPlayer" type="RigidBody2D"]
+z_index = 5
+collision_layer = 2
+mass = 1.5
+physics_material_override = SubResource("PhysicsMaterial_083kb")
+center_of_mass_mode = 1
+center_of_mass = Vector2(0, -10)
+script = ExtResource("1_cnego")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -0.785398
+texture = ExtResource("2_0fltp")
+centered = false
+offset = Vector2(-6, -27)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -15)
+shape = SubResource("CapsuleShape2D_tfob8")
+
+[node name="PlayerKill" parent="." instance=ExtResource("3_4a72r")]
+
+[node name="CollisionShape2Dwide" type="CollisionShape2D" parent="PlayerKill"]
+position = Vector2(0, -15)
+shape = SubResource("CapsuleShape2D_tfob8")
+
+[node name="RayCasts" type="Node2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="RayCasts"]
+position = Vector2(0, -32)
+rotation = -0.702915
+target_position = Vector2(4, 4)
+
+[node name="RayCast2D2" type="RayCast2D" parent="RayCasts"]
+position = Vector2(0, -32)
+rotation = -0.702915
+target_position = Vector2(4, -5)
+
+[node name="RayCast2D3" type="RayCast2D" parent="RayCasts"]
+position = Vector2(0, -32)
+rotation = -0.702915
+target_position = Vector2(-5, -4)
+
+[node name="RayCast2D4" type="RayCast2D" parent="RayCasts"]
+position = Vector2(-1, 1)
+rotation = 2.43575
+target_position = Vector2(4, 4)
+
+[node name="RayCast2D5" type="RayCast2D" parent="RayCasts"]
+position = Vector2(0, 1)
+rotation = 2.48394
+target_position = Vector2(4, -5)
+
+[node name="RayCast2D6" type="RayCast2D" parent="RayCasts"]
+position = Vector2(0, 1)
+rotation = 2.43575
+target_position = Vector2(-5, -4)
+
+[node name="RayCast2D7" type="RayCast2D" parent="RayCasts"]
+position = Vector2(0, -27)
+rotation = 2.43575
+target_position = Vector2(-5, -4)
+
+[node name="RayCast2D8" type="RayCast2D" parent="RayCasts"]
+position = Vector2(9.53674e-07, -21)
+rotation = 2.43575
+target_position = Vector2(-5, -4)
+
+[node name="RayCast2D9" type="RayCast2D" parent="RayCasts"]
+position = Vector2(9.53674e-07, -16)
+rotation = 2.43575
+target_position = Vector2(-5, -4)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="PlayerKill" to="." method="_on_player_kill_body_entered"]

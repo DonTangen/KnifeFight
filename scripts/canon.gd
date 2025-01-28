@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var main = get_tree().get_root().get_node("Game")
+@onready var main = get_tree().get_root().get_node("tutorial")
 @onready var projectile = load("res://projectile.tscn")
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
