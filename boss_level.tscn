@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bwjlqx13ye2sy" path="res://scenes/sword_player.tscn" id="1_dr3y7"]
 [ext_resource type="Texture2D" uid="uid://cordc2owd3p8y" path="res://assets/Sprites/14-TileSets/Terrain (32x32).png" id="2_giyyb"]
 [ext_resource type="Texture2D" uid="uid://dxclxjclegx28" path="res://assets/Sprites/14-TileSets/Decorations (32x32).png" id="3_wic6m"]
-[ext_resource type="PackedScene" path="res://scenes/one_way_platform_big.tscn" id="4_bj1kl"]
+[ext_resource type="PackedScene" uid="uid://mttjrlqvcdbf" path="res://scenes/one_way_platform_big.tscn" id="4_bj1kl"]
 [ext_resource type="PackedScene" path="res://scenes/one_way_platform_small.tscn" id="5_lnexk"]
 [ext_resource type="Texture2D" uid="uid://bdb31i5bhluqj" path="res://assets/32 Free Weapon Icons/Icons/Iicon_32_22.png" id="6_h63d3"]
 [ext_resource type="AudioStream" uid="uid://bxodl0gj7xg3v" path="res://assets/Music/GameJamAwesomeHook.mp3" id="7_dbq2h"]

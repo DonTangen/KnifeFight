@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bdb31i5bhluqj" path="res://assets/32 Free Weapon Icons/Icons/Iicon_32_22.png" id="4_kkd5n"]
 [ext_resource type="PackedScene" path="res://scenes/coin.tscn" id="5_2rjnq"]
 [ext_resource type="PackedScene" path="res://scenes/killzone.tscn" id="6_chwyg"]
-[ext_resource type="PackedScene" path="res://scenes/one_way_platform_big.tscn" id="6_l7m1g"]
+[ext_resource type="PackedScene" uid="uid://mttjrlqvcdbf" path="res://scenes/one_way_platform_big.tscn" id="6_l7m1g"]
 [ext_resource type="PackedScene" path="res://scenes/one_way_platform_small.tscn" id="7_kyjnp"]
 [ext_resource type="PackedScene" path="res://scenes/pig.tscn" id="8_etwnv"]
 [ext_resource type="AudioStream" uid="uid://bxodl0gj7xg3v" path="res://assets/Music/GameJamAwesomeHook.mp3" id="9_6ow23"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cyd06jgro6ux"]
+[gd_scene load_steps=4 format=3 uid="uid://btj3hclwokfda"]
 
 [ext_resource type="Script" path="res://projectile.gd" id="1_gevd1"]
 [ext_resource type="Texture2D" uid="uid://qmtjr0jl40kj" path="res://assets/Sprites/10-Cannon/Cannon Ball.png" id="2_11f33"]
@@ -27,7 +27,7 @@ position = Vector2(-7, -5)
 shape = SubResource("CircleShape2D_yihm7")
 
 [node name="Life" type="Timer" parent="."]
-wait_time = 7.0
+wait_time = 11.0
 autostart = true
 
 [node name="CannonBall2" type="Sprite2D" parent="."]
