@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=4 uid="uid://blvuqfunceicg"]
+[gd_scene load_steps=20 format=4 uid="uid://blvuqfunceicg"]
 
 [ext_resource type="PackedScene" uid="uid://bwjlqx13ye2sy" path="res://scenes/sword_player.tscn" id="1_00xxu"]
 [ext_resource type="PackedScene" uid="uid://biaed4vdyyi1j" path="res://scenes/lives.tscn" id="1_gt6uw"]
+[ext_resource type="PackedScene" uid="uid://cuukk8xcyfkac" path="res://scenes/door.tscn" id="2_e4ppc"]
 [ext_resource type="Texture2D" uid="uid://cordc2owd3p8y" path="res://assets/Sprites/14-TileSets/Terrain (32x32).png" id="2_fdxiq"]
 [ext_resource type="Texture2D" uid="uid://bdb31i5bhluqj" path="res://assets/32 Free Weapon Icons/Icons/Iicon_32_22.png" id="2_vtod4"]
 [ext_resource type="Texture2D" uid="uid://dxclxjclegx28" path="res://assets/Sprites/14-TileSets/Decorations (32x32).png" id="3_njvgs"]
@@ -270,8 +271,12 @@ distance = 8.0
 
 [node name="Lives" parent="." instance=ExtResource("1_gt6uw")]
 
+[node name="Door" parent="." instance=ExtResource("2_e4ppc")]
+z_index = 1
+position = Vector2(509, -389)
+
 [node name="SwordPlayer" parent="." instance=ExtResource("1_00xxu")]
-position = Vector2(-134, 5)
+position = Vector2(393, -49)
 
 [node name="MovingParticles" type="GPUParticles2D" parent="SwordPlayer"]
 show_behind_parent = true
@@ -295,6 +300,7 @@ rotation_smoothing_enabled = true
 position = Vector2(46, 264)
 stream = ExtResource("4_bem3x")
 autoplay = true
+bus = &"Music"
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_w2bgc")
