@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwjlqx13ye2sy"]
+[gd_scene load_steps=7 format=3 uid="uid://bwjlqx13ye2sy"]
 
 [ext_resource type="Script" path="res://scripts/sword_player.gd" id="1_s38h3"]
 [ext_resource type="Texture2D" uid="uid://bdb31i5bhluqj" path="res://assets/32 Free Weapon Icons/Icons/Iicon_32_22.png" id="2_trqaa"]
@@ -8,8 +8,12 @@
 friction = 0.25
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tfob8"]
-radius = 5.0
-height = 39.598
+radius = 4.0
+height = 40.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n2jew"]
+radius = 8.0
+height = 46.0
 
 [node name="SwordPlayer" type="RigidBody2D"]
 z_index = 5
@@ -32,10 +36,13 @@ position = Vector2(0, -15)
 shape = SubResource("CapsuleShape2D_tfob8")
 
 [node name="PlayerKill" parent="." instance=ExtResource("3_xbclv")]
+position = Vector2(9, 1)
 
-[node name="CollisionShape2Dwide" type="CollisionShape2D" parent="PlayerKill"]
-position = Vector2(0, -15)
-shape = SubResource("CapsuleShape2D_tfob8")
+[node name="Hurtbox" type="CollisionShape2D" parent="PlayerKill"]
+z_index = -2
+position = Vector2(-9, -17)
+shape = SubResource("CapsuleShape2D_n2jew")
+debug_color = Color(0.98815, 0, 0.305211, 0.42)
 
 [node name="RayCasts" type="Node2D" parent="."]
 
@@ -113,6 +120,10 @@ target_position = Vector2(-5, -4)
 wait_time = 0.104
 one_shot = true
 
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_entered" from="PlayerKill" to="." method="_on_player_kill_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]

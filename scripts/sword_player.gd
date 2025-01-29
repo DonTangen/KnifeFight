@@ -14,6 +14,10 @@ var previous_pos = Vector2.ZERO
 var timer_expired = 0
 var is_stuck = 0
 var is_charging = 0
+var prev_lives = 3
+var blink = 0
+var taking_damage = 0
+var timer2_started = 0
 
 @onready var rb: RigidBody2D = $"."
 @onready var sprite: Sprite2D = $Sprite2D
@@ -35,6 +39,7 @@ var is_charging = 0
 @onready var ray_cast_13: RayCast2D = $RayCasts/RayCast2D13
 @onready var ray_cast_14: RayCast2D = $RayCasts/RayCast2D14
 @onready var timer: Timer = $Timer
+@onready var timer2: Timer = $Timer2
 @onready var moving_particles: GPUParticles2D = $MovingParticles
 
 func _integrate_forces(_state: PhysicsDirectBodyState2D) -> void:
@@ -47,39 +52,48 @@ func _integrate_forces(_state: PhysicsDirectBodyState2D) -> void:
 
 	match n:
 		1:
-			if not (ray_cast.is_colliding() or ray_cast_2.is_colliding() or ray_cast_6.is_colliding()):
+			if not (ray_cast.is_colliding() or ray_cast_2.is_colliding() or ray_cast_6.is_colliding() or ray_cast_7.is_colliding() or ray_cast_8.is_colliding() or ray_cast_9.is_colliding() or ray_cast_13.is_colliding()):
 				self.rotation_degrees += attack_rotation / 6.0
 			n = 2
 		2:
-			if not (ray_cast.is_colliding() or ray_cast_2.is_colliding() or ray_cast_6.is_colliding()):
+			if not (ray_cast.is_colliding() or ray_cast_2.is_colliding() or ray_cast_6.is_colliding() or ray_cast_7.is_colliding() or ray_cast_8.is_colliding() or ray_cast_9.is_colliding() or ray_cast_13.is_colliding()):
 				self.rotation_degrees += attack_rotation / 6.0
 			n = 3
 		3:
-			if not (ray_cast.is_colliding() or ray_cast_2.is_colliding() or ray_cast_6.is_colliding()):
+			if not (ray_cast.is_colliding() or ray_cast_2.is_colliding() or ray_cast_6.is_colliding() or ray_cast_7.is_colliding() or ray_cast_8.is_colliding() or ray_cast_9.is_colliding() or ray_cast_13.is_colliding()):
 				self.rotation_degrees += attack_rotation / 6.0
 			n = 4
 		4:
-			if not (ray_cast.is_colliding() or ray_cast_2.is_colliding() or ray_cast_6.is_colliding()):
+			if not (ray_cast.is_colliding() or ray_cast_2.is_colliding() or ray_cast_6.is_colliding() or ray_cast_7.is_colliding() or ray_cast_8.is_colliding() or ray_cast_9.is_colliding() or ray_cast_13.is_colliding()):
 				self.rotation_degrees += attack_rotation / 6.0
 			n = 5
 		5:
-			if not (ray_cast.is_colliding() or ray_cast_2.is_colliding() or ray_cast_6.is_colliding()):
+			if not (ray_cast.is_colliding() or ray_cast_2.is_colliding() or ray_cast_6.is_colliding() or ray_cast_7.is_colliding() or ray_cast_8.is_colliding() or ray_cast_9.is_colliding() or ray_cast_13.is_colliding()):
 				self.rotation_degrees += attack_rotation / 6.0
 			n = 6
 		6:
-			if not (ray_cast.is_colliding() or ray_cast_2.is_colliding() or ray_cast_6.is_colliding()):
+			if not (ray_cast.is_colliding() or ray_cast_2.is_colliding() or ray_cast_6.is_colliding() or ray_cast_7.is_colliding() or ray_cast_8.is_colliding() or ray_cast_9.is_colliding() or ray_cast_13.is_colliding()):
 				self.rotation_degrees += attack_rotation / 6.0
 			n = 0
+			Livescounter.invincibility = 0
 			moving_particles.amount = 8
 			moving_particles.emitting = false
 
-	# Add the gravity.
-	#velocity += get_gravity()
-
 	# Fail-safe check for on death collision logic
 	if is_instance_valid(collision_shape):
+		if is_lunging == 1:
+			Livescounter.invincibility = 1
+		else:
+			Livescounter.invincibility = 0
+		if is_charging == 1:
+			self.linear_velocity = Vector2.ZERO
+			self.angular_velocity = 0
+			self.gravity_scale = 0
+			collision_shape.set_deferred("disabled", true)
+		else:
+			collision_shape.set_deferred("disabled", false)
 		# Rotation
-		if Input.is_action_pressed("rotate_left") and is_stuck == 0:
+		if Input.is_action_pressed("rotate_left") and is_stuck == 0 and !is_charging and !is_lunging:
 			self.freeze = false
 			moving_particles.emitting = false
 			self.gravity_scale = 1
@@ -87,7 +101,7 @@ func _integrate_forces(_state: PhysicsDirectBodyState2D) -> void:
 				if not ray_cast.is_colliding():
 					self.rotation_degrees += rotation_speed
 					self.angular_velocity = 2
-		if Input.is_action_pressed("rotate_right") and is_stuck == 0:
+		if Input.is_action_pressed("rotate_right") and is_stuck == 0 and !is_charging and !is_lunging:
 			self.freeze = false
 			moving_particles.emitting = false
 			self.gravity_scale = 1
@@ -95,8 +109,10 @@ func _integrate_forces(_state: PhysicsDirectBodyState2D) -> void:
 				if not ray_cast_3.is_colliding():
 					self.rotation_degrees -= rotation_speed
 					self.angular_velocity = 2
+
+
 		# Handle jump.
-		if Input.is_action_just_pressed("jump"):
+		if Input.is_action_just_pressed("jump") and !is_charging and !is_lunging:
 			reset_position()
 			self.freeze = false
 			self.gravity_scale = 1
@@ -104,8 +120,10 @@ func _integrate_forces(_state: PhysicsDirectBodyState2D) -> void:
 				apply_central_impulse(Vector2(0, JUMP_VELOCITY))
 			is_stuck = 0
 			moving_particles.emitting = false
+
+
 		# Sword Swing
-		if Input.is_action_just_pressed("attack-deflect") and is_stuck == 0:
+		if Input.is_action_just_pressed("attack-deflect") and is_stuck == 0 and !is_charging and !is_lunging:
 			if n == 0:
 				moving_particles.emitting = true
 				moving_particles.amount_ratio = 4
@@ -113,7 +131,11 @@ func _integrate_forces(_state: PhysicsDirectBodyState2D) -> void:
 					self.rotation_degrees += attack_rotation / 6.0
 					self.angular_velocity = 7
 					n = 1
+					Livescounter.invincibility = 1
+
+
 		# Lunging Attack
+		# Charging
 		if Input.is_action_pressed("lunge"):
 			if is_stuck == 1: reset_position()
 			if ray_cast.is_colliding() or ray_cast_2.is_colliding() or ray_cast_3.is_colliding() or ray_cast_4.is_colliding() or ray_cast_5.is_colliding() or ray_cast_6.is_colliding() or is_stuck == 1 or is_charging == 1:
@@ -126,6 +148,7 @@ func _integrate_forces(_state: PhysicsDirectBodyState2D) -> void:
 				if power <= 7: sprite.position.y += 2
 				power += 1
 				if power > 8: power = 8
+		# Releasing attack
 		if Input.is_action_just_released("lunge"):
 			self.freeze = false
 			self.gravity_scale = 1
@@ -139,40 +162,46 @@ func _integrate_forces(_state: PhysicsDirectBodyState2D) -> void:
 			lunge_direction = self.position - previous_pos
 			power = 0
 			timer.start()
+		# Checking if stab would stick sword in
 		if (ray_cast_2.is_colliding() or ray_cast_13.is_colliding() or ray_cast_14.is_colliding()) and is_lunging == 1 and timer_expired == 1:
-			#self.set_deferred("freeze", true)
-			self.freeze = true
+			self.linear_velocity = Vector2.ZERO
+			self.angular_velocity = 0
 			self.gravity_scale = 0
 			sprite.position.y -= 14
 			is_lunging = 0
 			timer_expired = 0
 			is_stuck = 1
 			moving_particles.emitting = false
+		# Check if stab doesnt stick
 		if (ray_cast.is_colliding() or ray_cast_3.is_colliding() or ray_cast_4.is_colliding() or ray_cast_5.is_colliding() or ray_cast_6.is_colliding() or ray_cast_7.is_colliding() or ray_cast_8.is_colliding() or ray_cast_9.is_colliding() or ray_cast_10.is_colliding() or ray_cast_11.is_colliding() or ray_cast_12.is_colliding()) and is_lunging == 1 and timer_expired == 1:
 			self.freeze = false
 			self.gravity_scale = 1
 			is_lunging = 0
 			moving_particles.emitting = false
 			timer_expired = 0
-		# Apply movement
-		if direction: self.apply_force(velocity, Vector2(0,0))
-		else: self.apply_force(-velocity, Vector2(0,0))
 
+		if Livescounter.lives != prev_lives:
+			taking_damage = 1
+
+		if taking_damage == 1 and timer2_started == 0:
+			take_damage()
+
+		# Apply movement
+		if !is_charging:
+			if direction: self.apply_force(velocity, Vector2(0,0))
+			else: self.apply_force(-velocity, Vector2(0,0))
+
+		prev_lives = Livescounter.lives
+
+	# On death mechanics
 	if not is_instance_valid(collision_shape):
 		self.apply_force(-velocity, Vector2(0,0))
-		print("instance not valid")
 	
 	previous_pos = self.position
 	#print("is stuck")
 	#print(is_stuck)
 	#print("is lunging")
 	#print(is_lunging)
-
-func _on_player_kill_body_entered(body: Node2D) -> void:
-	if Input.is_action_just_pressed("attack-deflect"):
-		if (ray_cast.is_colliding() or ray_cast_7.is_colliding() or ray_cast_8.is_colliding() or ray_cast_9.is_colliding()):
-			body.queue_free()
-
 
 func _on_timer_timeout() -> void:
 	timer_expired = 1
@@ -181,3 +210,44 @@ func _on_timer_timeout() -> void:
 func reset_position():
 	var sword_node = get_node("Sprite2D")
 	sword_node.position = Vector2(0, 0)
+
+func take_damage():
+	if blink == 0:
+		sprite.hide()
+		timer2.start()
+		timer2_started = 1
+	if blink == 1:
+		sprite.show()
+		timer2.start()
+		timer2_started = 1
+	if blink == 2:
+		sprite.hide()
+		timer2.start()
+		timer2_started = 1
+	if blink == 3:
+		sprite.show()
+		timer2.start()
+		timer2_started = 1
+	if blink == 4:
+		sprite.hide()
+		timer2.start()
+		timer2_started = 1
+	if blink == 5:
+		sprite.show()
+		timer2.start()
+		timer2_started = 1
+	if blink == 6:
+		sprite.hide()
+		timer2.start()
+		timer2_started = 1
+	if blink == 7:
+		sprite.show()
+		timer2.start()
+		timer2_started = 1
+	if blink > 7:
+		taking_damage = 0
+		blink = 0
+
+func _on_timer_2_timeout() -> void:
+	timer2_started = 0
+	blink += 1

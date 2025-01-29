@@ -1,26 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://btj3hclwokfda"]
+[gd_scene load_steps=6 format=3 uid="uid://btj3hclwokfda"]
 
-[ext_resource type="Script" path="res://projectile.gd" id="1_xoblt"]
-[ext_resource type="Texture2D" uid="uid://qmtjr0jl40kj" path="res://assets/Sprites/10-Cannon/Cannon Ball.png" id="2_qgbqp"]
+[ext_resource type="Script" path="res://scripts/projectile.gd" id="1_gevd1"]
+[ext_resource type="Texture2D" uid="uid://qmtjr0jl40kj" path="res://assets/Sprites/10-Cannon/Cannon Ball.png" id="2_11f33"]
+[ext_resource type="PackedScene" uid="uid://upe0adekrunx" path="res://scenes/killzone.tscn" id="2_ir8ip"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yihm7"]
-radius = 6.40312
+radius = 5.02494
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3nky6"]
+radius = 4.272
 
 [node name="Projectile" type="CharacterBody2D"]
 z_index = 2
 scale = Vector2(2, 2)
 collision_mask = 3
 slide_on_ceiling = false
-script = ExtResource("1_xoblt")
+script = ExtResource("1_gevd1")
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_mask = 2
-collision_priority = 0.0
+[node name="Killzone" parent="." instance=ExtResource("2_ir8ip")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_yihm7")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
 shape = SubResource("CircleShape2D_yihm7")
 
 [node name="Life" type="Timer" parent="."]
@@ -28,9 +27,20 @@ wait_time = 11.0
 autostart = true
 
 [node name="CannonBall2" type="Sprite2D" parent="."]
-position = Vector2(-6.75, -4.5)
-scale = Vector2(0.965909, 0.964286)
-texture = ExtResource("2_qgbqp")
+position = Vector2(-5, -3.5)
+scale = Vector2(0.746, 0.744)
+texture = ExtResource("2_11f33")
 
-[connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]
+[node name="Rays" type="Node" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="Rays"]
+target_position = Vector2(-8, 0)
+
+[node name="RayCast2D2" type="RayCast2D" parent="Rays"]
+target_position = Vector2(8, 0)
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3nky6")
+
+[connection signal="body_shape_entered" from="Killzone" to="." method="_on_killzone_body_shape_entered"]
 [connection signal="timeout" from="Life" to="." method="_on_life_timeout"]
