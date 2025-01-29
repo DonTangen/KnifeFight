@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://dlee154hh2ku8"]
+[gd_scene load_steps=18 format=4 uid="uid://beng4i8ln6wrs"]
 
 [ext_resource type="PackedScene" uid="uid://bwjlqx13ye2sy" path="res://scenes/sword_player.tscn" id="1_dr3y7"]
 [ext_resource type="Texture2D" uid="uid://cordc2owd3p8y" path="res://assets/Sprites/14-TileSets/Terrain (32x32).png" id="2_giyyb"]

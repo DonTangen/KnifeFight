@@ -1,9 +1,11 @@
 extends Node2D
 
-@onready var main = get_tree().current_scene      #get_root().get_node()
+@onready var main = get_tree().get_root().get_node("tutorial")
 @onready var projectile = load("res://scenes/projectile.tscn")
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
-
+func _ready() -> void:
+	animated_sprite_2d.play("idle")
 
 func shoot():
 	var instance = projectile.instantiate()
@@ -15,3 +17,4 @@ func shoot():
 
 func _on_timer_timeout() -> void:
 	shoot()
+	animated_sprite_2d.play("shoot")
