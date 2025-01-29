@@ -17,7 +17,9 @@ height = 46.0
 
 [node name="SwordPlayer" type="RigidBody2D"]
 z_index = 5
-collision_layer = 2
+collision_layer = 3
+collision_mask = 3
+collision_priority = 2.0
 mass = 1.5
 physics_material_override = SubResource("PhysicsMaterial_083kb")
 center_of_mass_mode = 1

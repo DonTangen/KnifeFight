@@ -11,7 +11,7 @@ scale = Vector2(0.3, 0.3)
 script = ExtResource("1_dpmg6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-62, 19)
+position = Vector2(0, 16.6667)
 texture = ExtResource("2_ioexl")
 region_enabled = true
 region_rect = Rect2(487.249, 177.515, 171.187, 105.565)
@@ -22,13 +22,21 @@ autostart = true
 [node name="Killzone" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
-position = Vector2(-48.3333, 8.33333)
+position = Vector2(3.8147e-06, 10)
 shape = SubResource("RectangleShape2D_rxixf")
 
 [node name="RayCast_left" type="RayCast2D" parent="."]
-target_position = Vector2(-123.333, 0)
+position = Vector2(0, 53.3333)
+scale = Vector2(2.302, 2.2822)
+target_position = Vector2(-110.049, 0)
+collision_mask = 16
+collide_with_areas = true
 
 [node name="RayCast_right" type="RayCast2D" parent="."]
-target_position = Vector2(13.3333, 0)
+z_index = 1
+position = Vector2(0, 53.3333)
+target_position = Vector2(213.333, 0)
+collision_mask = 16
+collide_with_areas = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://dlee154hh2ku8"]
+[gd_scene load_steps=19 format=4 uid="uid://dlee154hh2ku8"]
 
 [ext_resource type="PackedScene" uid="uid://bwjlqx13ye2sy" path="res://scenes/sword_player.tscn" id="1_dr3y7"]
 [ext_resource type="Texture2D" uid="uid://cordc2owd3p8y" path="res://assets/Sprites/14-TileSets/Terrain (32x32).png" id="2_giyyb"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://cwo73jr6nshm7" path="res://assets/Music/AwesomeFinalDraftGJ.mp3" id="7_h6vfi"]
 [ext_resource type="PackedScene" uid="uid://cuukk8xcyfkac" path="res://scenes/door.tscn" id="8_orv6b"]
 [ext_resource type="PackedScene" uid="uid://biaed4vdyyi1j" path="res://scenes/lives.tscn" id="9_1yuum"]
+[ext_resource type="PackedScene" uid="uid://dircnsws3tlyw" path="res://scenes/gun.tscn" id="10_2gy1m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1t80d"]
 texture = ExtResource("2_giyyb")
@@ -181,7 +182,7 @@ texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSet" id="TileSet_i0vpe"]
 tile_size = Vector2i(32, 32)
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 17
 sources/0 = SubResource("TileSetAtlasSource_1t80d")
 sources/1 = SubResource("TileSetAtlasSource_r55qr")
 
@@ -227,11 +228,17 @@ gravity = Vector3(0, 0, 0)
 alpha_curve = SubResource("CurveTexture_861nv")
 
 [node name="boss level" type="Node2D"]
+light_mask = 5
+visibility_layer = 5
 
 [node name="TileMap" type="TileMap" parent="."]
+light_mask = 5
+visibility_layer = 5
 format = 2
 
 [node name="TileMapLayer" type="TileMapLayer" parent="TileMap"]
+light_mask = 5
+visibility_layer = 5
 tile_map_data = PackedByteArray("AAD8////AAACAAUAAAD9////AAACAAUAAAD+////AAACAAUAAAD/////AAACAAUAAAAAAP//AAACAAUAAAABAP//AAACAAUAAAACAP//AAACAAUAAAADAP//AAACAAUAAAAEAP//AAACAAUAAAAFAP//AAACAAUAAAAGAP//AAACAAUAAAAHAP//AAACAAUAAAAIAP//AAACAAUAAAAJAP//AAACAAUAAAAKAP//AAACAAUAAAALAP//AAACAAUAAAAMAP//AAACAAUAAAANAP//AAACAAUAAAAOAP//AAARAAUAAAAPAP//AAACAAUAAAAQAP//AAACAAUAAAARAP//AAACAAUAAAASAP//AAACAAUAAAATAP//AAACAAUAAAAUAP//AAACAAUAAAAVAP//AAACAAUAAAAWAP//AAACAAUAAAAXAP//AAACAAUAAAAYAP//AAACAAUAAAAZAP//AAACAAUAAAAaAP//AAACAAUAAAAbAP//AAACAAUAAAAcAP//AAACAAUAAAAdAP//AAACAAUAAAAeAP//AAAFAAIAAAAeAP7/AAAFAAIAAAAeAP3/AAAFAAIAAAAeAPz/AAAFAAIAAAAeAPv/AAAFAAIAAAAeAPr/AAAFAAIAAAAeAPn/AAAFAAIAAAAeAPj/AAAFAAIAAAAeAPf/AAAFAAIAAAAeAPb/AAAFAAIAAAAeAPX/AAAFAAIAAAAeAPT/AAAFAAIAAAAeAPP/AAAFAAIAAAAeAPL/AAAFAAIAAAAeAPH/AAAFAAIAAAAeAPD/AAAFAAIAAAAeAO//AAAFAAIAAAD3/+//AAAFAAIAAAD3//D/AAAFAAIAAAD3//H/AAAFAAIAAAD3//L/AAAFAAIAAAD3//P/AAAFAAIAAAD3//T/AAAQAAQAAAD3//X/AAAFAAIAAAD3//b/AAAFAAIAAAD3//f/AAAFAAIAAAD3//j/AAAFAAIAAAD3//n/AAAFAAIAAAD3//r/AAAFAAIAAAD3//v/AAAFAAIAAAD3//z/AAAFAAIAAAD3//3/AAAFAAIAAAD3//7/AAAFAAIAAAD3////AAAQAAUAAAD4////AAACAAUAAAD5////AAACAAUAAAD6////AAACAAUAAAD7////AAACAAUAAAD3/+v/AAACAAUAAAD4/+v/AAACAAUAAAD5/+v/AAACAAUAAAD6/+v/AAACAAUAAAD7/+v/AAACAAUAAAD8/+v/AAACAAUAAAD9/+v/AAACAAUAAAD+/+v/AAACAAUAAAD//+v/AAACAAUAAAAAAOv/AAACAAUAAAABAOv/AAACAAUAAAACAOv/AAACAAUAAAADAOv/AAACAAUAAAAEAOv/AAACAAUAAAAFAOv/AAACAAUAAAAGAOv/AAACAAUAAAAHAOv/AAACAAUAAAAIAOv/AAACAAUAAAAJAOv/AAACAAUAAAAKAOv/AAACAAUAAAALAOv/AAACAAUAAAAMAOv/AAACAAUAAAANAOv/AAACAAUAAAAOAOv/AAACAAUAAAAPAOv/AAACAAUAAAAQAOv/AAACAAUAAAARAOv/AAACAAUAAAASAOv/AAACAAUAAAATAOv/AAACAAUAAAAUAOv/AAACAAUAAAAeAOz/AAAFAAIAAAAdAOv/AAACAAUAAAAcAOv/AAACAAUAAAAbAOv/AAACAAUAAAAaAOv/AAACAAUAAAAZAOv/AAACAAUAAAAYAOv/AAACAAUAAAAXAOv/AAACAAUAAAAWAOv/AAACAAUAAAAVAOv/AAACAAUAAAAeAOv/AAACAAUAAAAeAO3/AAAFAAIAAAAeAO7/AAAFAAIAAAD3/+z/AAAFAAIAAAD3/+3/AAAFAAIAAAD3/+7/AAAFAAIAAAAOAP7/AAAFAAIAAAAOAP3/AAAFAAIAAAAOAPz/AAAFAAIAAAAOAPv/AAAFAAIAAAAOAPr/AAAFAAIAAAAOAPn/AAAFAAIAAAAOAPj/AAAFAAIAAAAOAPf/AAAFAAIAAAAOAPb/AAAFAAIAAAAOAPX/AAAFAAIAAAAOAPT/AAARAAQAAAANAPT/AAACAAUAAAAMAPT/AAACAAUAAAALAPT/AAACAAUAAAAKAPT/AAACAAUAAAAJAPT/AAACAAUAAAAIAPT/AAACAAUAAAAHAPT/AAACAAUAAAAGAPT/AAACAAUAAAAFAPT/AAACAAUAAAAEAPT/AAACAAUAAAADAPT/AAACAAUAAAACAPT/AAACAAUAAAABAPT/AAACAAUAAAAAAPT/AAACAAUAAAD///T/AAACAAUAAAD+//T/AAACAAUAAAD9//T/AAACAAUAAAD8//T/AAACAAUAAAD7//T/AAACAAUAAAD6//T/AAACAAUAAAD5//T/AAACAAUAAAD4//T/AAACAAUAAAA=")
 tile_set = SubResource("TileSet_i0vpe")
 
@@ -293,7 +300,8 @@ position = Vector2(786, -475)
 position = Vector2(128, -224)
 
 [node name="SwordPlayer" parent="." instance=ExtResource("1_dr3y7")]
-position = Vector2(-186, -39)
+position = Vector2(10, -166)
+collision_layer = 1
 
 [node name="MovingParticles" type="GPUParticles2D" parent="SwordPlayer"]
 show_behind_parent = true
@@ -326,3 +334,6 @@ position = Vector2(8, -152)
 position = Vector2(-187, -60)
 
 [node name="CanvasLayer" parent="." instance=ExtResource("9_1yuum")]
+
+[node name="Gun" parent="." instance=ExtResource("10_2gy1m")]
+position = Vector2(112, -271)
