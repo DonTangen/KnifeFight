@@ -1,8 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://btj3hclwokfda"]
+[gd_scene load_steps=6 format=3 uid="uid://btj3hclwokfda"]
 
 [ext_resource type="Script" path="res://scripts/projectile.gd" id="1_gevd1"]
 [ext_resource type="Texture2D" uid="uid://qmtjr0jl40kj" path="res://assets/Sprites/10-Cannon/Cannon Ball.png" id="2_11f33"]
-[ext_resource type="PackedScene" uid="uid://upe0adekrunx" path="res://scenes/killzone.tscn" id="3_lgg5h"]
+[ext_resource type="PackedScene" uid="uid://upe0adekrunx" path="res://scenes/killzone.tscn" id="2_ir8ip"]
+
+[sub_resource type="GDScript" id="GDScript_lqje0"]
+script/source = "extends Area2D
+
+
+@onready var timer: Timer = $Timer
+
+func _on_body_entered(body: Node2D) -> void:
+	print(\"HIT\")
+	Livescounter.lives -= 1
+	if Livescounter.lives == 0:
+		body.get_node(\"CollisionShape2D\").queue_free()"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yihm7"]
 radius = 5.0
@@ -14,10 +26,20 @@ collision_mask = 3
 slide_on_ceiling = false
 script = ExtResource("1_gevd1")
 
-[node name="Killzone" parent="." instance=ExtResource("3_lgg5h")]
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
+collision_priority = 0.0
+script = SubResource("GDScript_lqje0")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Killzone"]
-z_index = -1
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_yihm7")
+
+[node name="Killzone" parent="Area2D" instance=ExtResource("2_ir8ip")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/Killzone"]
+shape = SubResource("CircleShape2D_yihm7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_yihm7")
 
 [node name="Life" type="Timer" parent="."]
