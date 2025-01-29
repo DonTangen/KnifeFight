@@ -273,10 +273,10 @@ distance = 8.0
 
 [node name="Door" parent="." instance=ExtResource("2_e4ppc")]
 z_index = 1
-position = Vector2(504, -389)
+position = Vector2(509, -389)
 
 [node name="SwordPlayer" parent="." instance=ExtResource("1_00xxu")]
-position = Vector2(659, -376)
+position = Vector2(393, -49)
 
 [node name="MovingParticles" type="GPUParticles2D" parent="SwordPlayer"]
 show_behind_parent = true
