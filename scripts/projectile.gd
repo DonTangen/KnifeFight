@@ -13,7 +13,7 @@ func _ready():
 	global_rotation = spawnRot
 	
 func _physics_process(_delta: float) -> void:
-	if ray_cast.is_colliding() or ray_cast_2.is_colliding():
+	if self.is_on_wall():
 		queue_free()
 	velocity = Vector2(-SPEED,0).rotated(dir)
 	move_and_slide()

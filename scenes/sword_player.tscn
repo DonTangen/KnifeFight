@@ -17,7 +17,9 @@ height = 46.0
 
 [node name="SwordPlayer" type="RigidBody2D"]
 z_index = 5
-collision_layer = 2
+collision_layer = 3
+collision_mask = 3
+collision_priority = 2.0
 mass = 1.5
 physics_material_override = SubResource("PhysicsMaterial_083kb")
 center_of_mass_mode = 1
@@ -37,6 +39,7 @@ shape = SubResource("CapsuleShape2D_tfob8")
 
 [node name="PlayerKill" parent="." instance=ExtResource("3_xbclv")]
 position = Vector2(9, 1)
+collision_layer = 128
 
 [node name="Hurtbox" type="CollisionShape2D" parent="PlayerKill"]
 z_index = -2

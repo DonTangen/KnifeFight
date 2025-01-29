@@ -1,14 +1,20 @@
 extends Node2D
 
 #Shooting script
-@onready var main = get_tree().get_root().get_node("Game")
-@onready var projectile = load("res://bullet.tscn")
+@onready var main = get_tree().current_scene
+@onready var bullet = load("res://scenes/bullet.tscn")
+@onready var player = get_parent().get_node("SwordPlayer")
 
 func shoot():
-	var instance = projectile.instantiate()
+	var instance = bullet.instantiate()
 	instance.dir = rotation
-	instance.spawnPos = global_position
-	instance.spawnRot = rotation
+	instance.flipped = sprite_2d.flip_h
+	if instance.flipped == 0:
+		instance.spawnPos = global_position + Vector2(20,0)
+		instance.spawnRot = sprite_2d.rotation
+	if instance.flipped == 1:
+		instance.spawnPos = global_position + Vector2(-15,0)
+		instance.spawnRot = sprite_2d.rotation
 	main.add_child.call_deferred(instance)
 
 
@@ -23,29 +29,20 @@ var direction = 1
 @onready var ray_cast_right: RayCast2D = $RayCast_right
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	# Applies random direction at start -- can probably delete as enemies will have player detection
-	var num = [-1,1]
-	direction *= num[randi() % num.size()]
-	if direction == 1:
-		sprite_2d.flip_h = true
-	if direction == -1:
-		sprite_2d.flip_h = false
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	# Checks if colliding with wall
-	if ray_cast_left.is_colliding():
-		direction = 1
-		sprite_2d.flip_h = true
+	if direction == 1:
 		sprite_2d.position.x = 5
-	if ray_cast_right.is_colliding():
-		direction = -1
-		sprite_2d.flip_h = false
-		sprite_2d.position.x = 0
+		sprite_2d.look_at(player.position)
+	if direction == -1:
+		sprite_2d.position.x = -5
+		sprite_2d.look_at(player.position)
+		sprite_2d.rotation_degrees += 180
 		
-
-	
-
+	if ray_cast_left.is_colliding():
+		sprite_2d.flip_h = false
+		direction = 1
+	if ray_cast_right.is_colliding():
+		sprite_2d.flip_h = true
+		direction = -1
 	position.x += direction * speed * delta

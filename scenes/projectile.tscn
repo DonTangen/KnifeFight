@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/projectile.gd" id="1_gevd1"]
 [ext_resource type="Texture2D" uid="uid://qmtjr0jl40kj" path="res://assets/Sprites/10-Cannon/Cannon Ball.png" id="2_11f33"]
-[ext_resource type="PackedScene" path="res://scenes/killzone.tscn" id="2_ir8ip"]
+[ext_resource type="PackedScene" uid="uid://upe0adekrunx" path="res://scenes/killzone.tscn" id="2_ir8ip"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yihm7"]
 radius = 5.02494
