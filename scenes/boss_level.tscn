@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://beng4i8ln6wrs"]
+[gd_scene load_steps=21 format=4 uid="uid://beng4i8ln6wrs"]
 
 [ext_resource type="PackedScene" uid="uid://bwjlqx13ye2sy" path="res://scenes/sword_player.tscn" id="1_dr3y7"]
 [ext_resource type="Texture2D" uid="uid://cordc2owd3p8y" path="res://assets/Sprites/14-TileSets/Terrain (32x32).png" id="2_giyyb"]
@@ -7,7 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://1ooyai65ai6p" path="res://scenes/one_way_platform_small.tscn" id="5_lnexk"]
 [ext_resource type="Texture2D" uid="uid://bdb31i5bhluqj" path="res://assets/32 Free Weapon Icons/Icons/Iicon_32_22.png" id="6_h63d3"]
 [ext_resource type="AudioStream" uid="uid://cwo73jr6nshm7" path="res://assets/Music/AwesomeFinalDraftGJ.mp3" id="7_h6vfi"]
-[ext_resource type="PackedScene" uid="uid://biaed4vdyyi1j" path="res://scenes/lives.tscn" id="9_1yuum"]
+[ext_resource type="PackedScene" uid="uid://cuukk8xcyfkac" path="res://scenes/door.tscn" id="8_orv6b"]
+[ext_resource type="PackedScene" path="res://scenes/lives.tscn" id="9_1yuum"]
 [ext_resource type="PackedScene" uid="uid://dircnsws3tlyw" path="res://scenes/gun.tscn" id="10_2gy1m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1t80d"]
@@ -339,82 +340,84 @@ format = 2
 tile_map_data = PackedByteArray("AAD8////AAACAAUAAAD9////AAACAAUAAAD+////AAACAAUAAAD/////AAACAAUAAAAAAP//AAACAAUAAAABAP//AAACAAUAAAACAP//AAACAAUAAAADAP//AAACAAUAAAAEAP//AAACAAUAAAAFAP//AAACAAUAAAAGAP//AAACAAUAAAAHAP//AAACAAUAAAAIAP//AAACAAUAAAAJAP//AAACAAUAAAAKAP//AAACAAUAAAALAP//AAACAAUAAAAMAP//AAACAAUAAAANAP//AAACAAUAAAAOAP//AAACAAUAAAAPAP//AAACAAUAAAAQAP//AAACAAUAAAARAP//AAACAAUAAAASAP//AAACAAUAAAATAP//AAACAAUAAAAUAP//AAARAAUAAAD3//H/AAAQAAQAAAD3//L/AAAFAAIAAAD3//P/AAAFAAIAAAD3//T/AAAFAAIAAAD3//X/AAAFAAIAAAD3//b/AAAFAAIAAAD3//f/AAAFAAIAAAD3//j/AAAFAAIAAAD3//n/AAAFAAIAAAD3//r/AAAFAAIAAAD3//v/AAAFAAIAAAD3//z/AAAFAAIAAAD3//3/AAAFAAIAAAD3//7/AAAFAAIAAAD3////AAAQAAUAAAD4////AAACAAUAAAD5////AAACAAUAAAD6////AAACAAUAAAD7////AAACAAUAAAAUAP7/AAAFAAIAAAAUAP3/AAAFAAIAAAAUAPz/AAAFAAIAAAAUAPv/AAAFAAIAAAAUAPr/AAAFAAIAAAAUAPn/AAAFAAIAAAAUAPj/AAAFAAIAAAAUAPf/AAAFAAIAAAAUAPb/AAAFAAIAAAAUAPX/AAAFAAIAAAAUAPT/AAAFAAIAAAAUAPP/AAAFAAIAAAAUAPL/AAAFAAIAAAAUAPH/AAARAAQAAAATAPH/AAACAAUAAAASAPH/AAACAAUAAAARAPH/AAACAAUAAAAQAPH/AAACAAUAAAAPAPH/AAACAAUAAAAOAPH/AAACAAUAAAANAPH/AAACAAUAAAAMAPH/AAACAAUAAAALAPH/AAACAAUAAAAKAPH/AAACAAUAAAAJAPH/AAACAAUAAAAIAPH/AAACAAUAAAAHAPH/AAACAAUAAAAGAPH/AAACAAUAAAAFAPH/AAACAAUAAAAEAPH/AAACAAUAAAADAPH/AAACAAUAAAACAPH/AAACAAUAAAABAPH/AAACAAUAAAAAAPH/AAACAAUAAAD///H/AAACAAUAAAD+//H/AAACAAUAAAD9//H/AAACAAUAAAD8//H/AAACAAUAAAD7//H/AAACAAUAAAD6//H/AAACAAUAAAD5//H/AAACAAUAAAD4//H/AAACAAUAAAA=")
 tile_set = SubResource("TileSet_i0vpe")
 
-[node name="OneWayPlatformBig" parent="TileMap/TileMapLayer" instance=ExtResource("4_bj1kl")]
+[node name="Platforms" type="Node" parent="TileMap/TileMapLayer"]
+
+[node name="OneWayPlatformBig" parent="TileMap/TileMapLayer/Platforms" instance=ExtResource("4_bj1kl")]
 position = Vector2(-200, -152)
 
-[node name="OneWayPlatformBig2" parent="TileMap/TileMapLayer" instance=ExtResource("4_bj1kl")]
+[node name="OneWayPlatformBig2" parent="TileMap/TileMapLayer/Platforms" instance=ExtResource("4_bj1kl")]
 position = Vector2(-96, -88)
 
-[node name="OneWayPlatformBig3" parent="TileMap/TileMapLayer" instance=ExtResource("4_bj1kl")]
+[node name="OneWayPlatformBig3" parent="TileMap/TileMapLayer/Platforms" instance=ExtResource("4_bj1kl")]
 position = Vector2(216, -152)
 
-[node name="OneWayPlatformBig4" parent="TileMap/TileMapLayer" instance=ExtResource("4_bj1kl")]
+[node name="OneWayPlatformBig4" parent="TileMap/TileMapLayer/Platforms" instance=ExtResource("4_bj1kl")]
 position = Vector2(488, -88)
 
-[node name="OneWayPlatformBig5" parent="TileMap/TileMapLayer" instance=ExtResource("4_bj1kl")]
+[node name="OneWayPlatformBig5" parent="TileMap/TileMapLayer/Platforms" instance=ExtResource("4_bj1kl")]
 position = Vector2(576, -296)
 
-[node name="OneWayPlatformBig6" parent="TileMap/TileMapLayer" instance=ExtResource("4_bj1kl")]
+[node name="OneWayPlatformBig6" parent="TileMap/TileMapLayer/Platforms" instance=ExtResource("4_bj1kl")]
 position = Vector2(-96, -352)
 
-[node name="OneWayPlatformSmall" parent="TileMap/TileMapLayer" instance=ExtResource("5_lnexk")]
+[node name="OneWayPlatformSmall" parent="TileMap/TileMapLayer/Platforms" instance=ExtResource("5_lnexk")]
 position = Vector2(312, -88)
 
-[node name="OneWayPlatformSmall2" parent="TileMap/TileMapLayer" instance=ExtResource("5_lnexk")]
+[node name="OneWayPlatformSmall2" parent="TileMap/TileMapLayer/Platforms" instance=ExtResource("5_lnexk")]
 position = Vector2(128, -88)
 
-[node name="OneWayPlatformSmall3" parent="TileMap/TileMapLayer" instance=ExtResource("5_lnexk")]
+[node name="OneWayPlatformSmall3" parent="TileMap/TileMapLayer/Platforms" instance=ExtResource("5_lnexk")]
 position = Vector2(312, -216)
 
-[node name="OneWayPlatformBig7" parent="TileMap/TileMapLayer" instance=ExtResource("4_bj1kl")]
+[node name="OneWayPlatformBig7" parent="TileMap/TileMapLayer/Platforms" instance=ExtResource("4_bj1kl")]
 position = Vector2(480, -216)
 
-[node name="OneWayPlatformBig8" parent="TileMap/TileMapLayer" instance=ExtResource("4_bj1kl")]
+[node name="OneWayPlatformBig8" parent="TileMap/TileMapLayer/Platforms" instance=ExtResource("4_bj1kl")]
 position = Vector2(216, -288)
 
-[node name="OneWayPlatformBig9" parent="TileMap/TileMapLayer" instance=ExtResource("4_bj1kl")]
+[node name="OneWayPlatformBig9" parent="TileMap/TileMapLayer/Platforms" instance=ExtResource("4_bj1kl")]
 position = Vector2(-208, -288)
 
-[node name="OneWayPlatformSmall4" parent="TileMap/TileMapLayer" instance=ExtResource("5_lnexk")]
+[node name="OneWayPlatformSmall4" parent="TileMap/TileMapLayer/Platforms" instance=ExtResource("5_lnexk")]
 position = Vector2(80, -152)
 
-[node name="OneWayPlatformSmall5" parent="TileMap/TileMapLayer" instance=ExtResource("5_lnexk")]
+[node name="OneWayPlatformSmall5" parent="TileMap/TileMapLayer/Platforms" instance=ExtResource("5_lnexk")]
 position = Vector2(344, -152)
 
-[node name="OneWayPlatformBig10" parent="TileMap/TileMapLayer" instance=ExtResource("4_bj1kl")]
+[node name="OneWayPlatformBig10" parent="TileMap/TileMapLayer/Platforms" instance=ExtResource("4_bj1kl")]
 position = Vector2(-104, -216)
 
-[node name="OneWayPlatformBig11" parent="TileMap/TileMapLayer" instance=ExtResource("4_bj1kl")]
+[node name="OneWayPlatformBig11" parent="TileMap/TileMapLayer/Platforms" instance=ExtResource("4_bj1kl")]
 position = Vector2(584, -152)
 
-[node name="OneWayPlatformSmall6" parent="TileMap/TileMapLayer" instance=ExtResource("5_lnexk")]
+[node name="OneWayPlatformSmall6" parent="TileMap/TileMapLayer/Platforms" instance=ExtResource("5_lnexk")]
 position = Vector2(-8, -288)
 
-[node name="OneWayPlatformSmall7" parent="TileMap/TileMapLayer" instance=ExtResource("5_lnexk")]
+[node name="OneWayPlatformSmall7" parent="TileMap/TileMapLayer/Platforms" instance=ExtResource("5_lnexk")]
 position = Vector2(-8, -152)
 
-[node name="OneWayPlatformSmall8" parent="TileMap/TileMapLayer" instance=ExtResource("5_lnexk")]
+[node name="OneWayPlatformSmall8" parent="TileMap/TileMapLayer/Platforms" instance=ExtResource("5_lnexk")]
 position = Vector2(408, -152)
 
-[node name="OneWayPlatformSmall9" parent="TileMap/TileMapLayer" instance=ExtResource("5_lnexk")]
+[node name="OneWayPlatformSmall9" parent="TileMap/TileMapLayer/Platforms" instance=ExtResource("5_lnexk")]
 position = Vector2(128, -216)
 
-[node name="OneWayPlatformSmall10" parent="TileMap/TileMapLayer" instance=ExtResource("5_lnexk")]
+[node name="OneWayPlatformSmall10" parent="TileMap/TileMapLayer/Platforms" instance=ExtResource("5_lnexk")]
 position = Vector2(408, -288)
 
-[node name="OneWayPlatformSmall11" parent="TileMap/TileMapLayer" instance=ExtResource("5_lnexk")]
+[node name="OneWayPlatformSmall11" parent="TileMap/TileMapLayer/Platforms" instance=ExtResource("5_lnexk")]
 position = Vector2(344, -288)
 
-[node name="OneWayPlatformBig12" parent="TileMap/TileMapLayer" instance=ExtResource("4_bj1kl")]
+[node name="OneWayPlatformBig12" parent="TileMap/TileMapLayer/Platforms" instance=ExtResource("4_bj1kl")]
 position = Vector2(480, -352)
 
-[node name="OneWayPlatformSmall12" parent="TileMap/TileMapLayer" instance=ExtResource("5_lnexk")]
+[node name="OneWayPlatformSmall12" parent="TileMap/TileMapLayer/Platforms" instance=ExtResource("5_lnexk")]
 position = Vector2(128, -352)
 
-[node name="OneWayPlatformSmall13" parent="TileMap/TileMapLayer" instance=ExtResource("5_lnexk")]
+[node name="OneWayPlatformSmall13" parent="TileMap/TileMapLayer/Platforms" instance=ExtResource("5_lnexk")]
 position = Vector2(312, -352)
 
-[node name="OneWayPlatformSmall14" parent="TileMap/TileMapLayer" instance=ExtResource("5_lnexk")]
+[node name="OneWayPlatformSmall14" parent="TileMap/TileMapLayer/Platforms" instance=ExtResource("5_lnexk")]
 position = Vector2(80, -288)
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="TileMap"]
@@ -423,10 +426,10 @@ tile_map_data = PackedByteArray("AAD4//L/AAACAAgAAAD5//L/AAACAAgAAAD6//L/AAACAAg
 tile_set = SubResource("TileSet_jki4w")
 
 [node name="Gun" parent="." instance=ExtResource("10_2gy1m")]
-position = Vector2(174, -399)
+position = Vector2(219, -411)
 
 [node name="SwordPlayer" parent="." instance=ExtResource("1_dr3y7")]
-position = Vector2(215, -305)
+position = Vector2(216, -41)
 
 [node name="MovingParticles" type="GPUParticles2D" parent="SwordPlayer"]
 show_behind_parent = true
@@ -453,3 +456,8 @@ autoplay = true
 bus = &"Music"
 
 [node name="CanvasLayer" parent="." instance=ExtResource("9_1yuum")]
+
+[node name="door" parent="." instance=ExtResource("8_orv6b")]
+position = Vector2(216, -60)
+collision_layer = 0
+collision_mask = 0
