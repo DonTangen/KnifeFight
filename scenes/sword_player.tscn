@@ -39,6 +39,7 @@ shape = SubResource("CapsuleShape2D_tfob8")
 
 [node name="PlayerKill" parent="." instance=ExtResource("3_xbclv")]
 position = Vector2(9, 1)
+collision_layer = 128
 
 [node name="Hurtbox" type="CollisionShape2D" parent="PlayerKill"]
 z_index = -2

@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
 @export var SPEED = 80
+@onready var ray_cast: RayCast2D = $Rays/RayCast2D
+@onready var ray_cast_2: RayCast2D = $Rays/RayCast2D2
 
 var dir : float
 var spawnPos : Vector2

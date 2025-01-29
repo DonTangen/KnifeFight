@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c1k673o8ccaw0" path="res://assets/PNG/medium_bullet.png" id="2_577fw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ro74r"]
-size = Vector2(11, 4)
+size = Vector2(12, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1kbk1"]
 size = Vector2(11, 4)
@@ -16,11 +16,11 @@ script = ExtResource("1_3r58y")
 [node name="Killzone" parent="." instance=ExtResource("2_54qlm")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
-position = Vector2(0.5, 0)
+position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_ro74r")
 
 [node name="Bullet" type="Sprite2D" parent="."]
-z_index = -1
+z_index = 1
 rotation = 1.5708
 scale = Vector2(0.230394, 0.190898)
 texture = ExtResource("2_577fw")
