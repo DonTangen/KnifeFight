@@ -611,7 +611,7 @@ tile_map_data = PackedByteArray("AAADAPP/AAABAAEAAAADAPT/AAABAAIAAAADAPX/AAABAAM
 tile_set = SubResource("TileSet_kueol")
 
 [node name="SwordPlayer" parent="." instance=ExtResource("6_wqijb")]
-position = Vector2(2521, -1282)
+position = Vector2(3, -27)
 
 [node name="MovingParticles" type="GPUParticles2D" parent="SwordPlayer"]
 show_behind_parent = true

@@ -18,6 +18,8 @@ var prev_lives = 3
 var blink = 0
 var taking_damage = 0
 var timer2_started = 0
+var is_attacking = 0
+var gun_health = 3
 
 @onready var rb: RigidBody2D = $"."
 @onready var sprite: Sprite2D = $Sprite2D
@@ -92,6 +94,8 @@ func _integrate_forces(_state: PhysicsDirectBodyState2D) -> void:
 			collision_shape.set_deferred("disabled", true)
 		else:
 			collision_shape.set_deferred("disabled", false)
+		if is_attacking: Livescounter.invincibility = 1
+		else: Livescounter.invincibility = 0
 		# Rotation
 		if Input.is_action_pressed("rotate_left") and is_stuck == 0 and !is_charging and !is_lunging:
 			self.freeze = false
@@ -130,6 +134,8 @@ func _integrate_forces(_state: PhysicsDirectBodyState2D) -> void:
 				if not (ray_cast.is_colliding() or ray_cast_2.is_colliding() or ray_cast_6.is_colliding()):
 					self.rotation_degrees += attack_rotation / 6.0
 					self.angular_velocity = 7
+					is_attacking = 1
+					timer.start()
 					n = 1
 					Livescounter.invincibility = 1
 
@@ -161,6 +167,7 @@ func _integrate_forces(_state: PhysicsDirectBodyState2D) -> void:
 			apply_central_impulse((Vector2(0, -power*1.25).rotated(self.rotation))*launch)
 			lunge_direction = self.position - previous_pos
 			power = 0
+			is_attacking = 1
 			timer.start()
 		# Checking if stab would stick sword in
 		if (ray_cast_2.is_colliding() or ray_cast_13.is_colliding() or ray_cast_14.is_colliding()) and is_lunging == 1 and timer_expired == 1:
@@ -205,6 +212,7 @@ func _integrate_forces(_state: PhysicsDirectBodyState2D) -> void:
 
 func _on_timer_timeout() -> void:
 	timer_expired = 1
+	is_attacking = 0
 	reset_position()
 
 func reset_position():
@@ -251,3 +259,13 @@ func take_damage():
 func _on_timer_2_timeout() -> void:
 	timer2_started = 0
 	blink += 1
+
+
+func _on_player_kill_area_entered(area: Area2D) -> void:
+	print(area.get_parent().name)
+	if is_attacking and area.get_parent().name == "Gun":
+		gun_health -= 1
+		print(gun_health)
+		if gun_health == 0:
+			area.get_parent().queue_free()
+	if is_attacking and !area.get_parent().name == "Gun": area.get_parent().queue_free()
