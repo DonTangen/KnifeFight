@@ -262,10 +262,9 @@ func _on_timer_2_timeout() -> void:
 
 
 func _on_player_kill_area_entered(area: Area2D) -> void:
-	print(area.get_parent().name)
 	if is_attacking and area.get_parent().name == "Gun":
 		gun_health -= 1
 		print(gun_health)
 		if gun_health == 0:
 			area.get_parent().queue_free()
-	if is_attacking and !area.get_parent().name == "Gun": area.get_parent().queue_free()
+	if (is_attacking or is_lunging) and !area.get_parent().name == "Gun": area.get_parent().queue_free()

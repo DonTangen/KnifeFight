@@ -20,6 +20,7 @@ region_rect = Rect2(487.249, 177.515, 171.187, 105.565)
 autostart = true
 
 [node name="Killzone" type="Area2D" parent="."]
+collision_layer = 513
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
 position = Vector2(3.8147e-06, 10)
