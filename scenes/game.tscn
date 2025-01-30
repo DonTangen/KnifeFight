@@ -4,12 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://dxclxjclegx28" path="res://assets/Sprites/14-TileSets/Decorations (32x32).png" id="2_svggb"]
 [ext_resource type="PackedScene" uid="uid://bwjlqx13ye2sy" path="res://scenes/sword_player.tscn" id="3_pxbj5"]
 [ext_resource type="Texture2D" uid="uid://bdb31i5bhluqj" path="res://assets/32 Free Weapon Icons/Icons/Iicon_32_22.png" id="4_kkd5n"]
-[ext_resource type="PackedScene" uid="uid://5x6uiackw4fa" path="res://scenes/coin.tscn" id="5_2rjnq"]
-[ext_resource type="PackedScene" uid="uid://upe0adekrunx" path="res://scenes/killzone.tscn" id="6_chwyg"]
+[ext_resource type="PackedScene" path="res://scenes/coin.tscn" id="5_2rjnq"]
+[ext_resource type="PackedScene" path="res://scenes/killzone.tscn" id="6_chwyg"]
 [ext_resource type="AudioStream" uid="uid://cwo73jr6nshm7" path="res://assets/Music/AwesomeFinalDraftGJ.mp3" id="6_ipafk"]
-[ext_resource type="PackedScene" uid="uid://brodjchsu5qsm" path="res://scenes/one_way_platform_big.tscn" id="6_l7m1g"]
-[ext_resource type="PackedScene" uid="uid://1ooyai65ai6p" path="res://scenes/one_way_platform_small.tscn" id="7_kyjnp"]
-[ext_resource type="PackedScene" uid="uid://beroim3bxc3dn" path="res://scenes/pig.tscn" id="8_etwnv"]
+[ext_resource type="PackedScene" uid="uid://mttjrlqvcdbf" path="res://scenes/one_way_platform_big.tscn" id="6_l7m1g"]
+[ext_resource type="PackedScene" path="res://scenes/one_way_platform_small.tscn" id="7_kyjnp"]
+[ext_resource type="PackedScene" path="res://scenes/pig.tscn" id="8_etwnv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0uv3l"]
 texture = ExtResource("2_567as")
@@ -353,7 +353,6 @@ rotation_smoothing_enabled = true
 position = Vector2(46, 264)
 stream = ExtResource("6_ipafk")
 autoplay = true
-bus = &"Music"
 
 [node name="Enemies" type="Node" parent="."]
 
