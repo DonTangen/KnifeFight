@@ -28,4 +28,6 @@ func _on_timer_timeout() -> void:
 	if get_tree().current_scene.name == "tutorial":
 		get_tree().change_scene_to_file("res://scenes/node_2d.tscn")
 	elif get_tree().current_scene.name == "vertical level":
+		get_tree().change_scene_to_file("res://scenes/new_level.tscn")
+	elif get_tree().current_scene.name == "new level":
 		get_tree().change_scene_to_file("res://scenes/boss_level.tscn")

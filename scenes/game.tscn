@@ -1,15 +1,16 @@
-[gd_scene load_steps=24 format=4 uid="uid://ic0y2tbq4388"]
+[gd_scene load_steps=25 format=4 uid="uid://ic0y2tbq4388"]
 
 [ext_resource type="Texture2D" uid="uid://cordc2owd3p8y" path="res://assets/Sprites/14-TileSets/Terrain (32x32).png" id="2_567as"]
 [ext_resource type="Texture2D" uid="uid://dxclxjclegx28" path="res://assets/Sprites/14-TileSets/Decorations (32x32).png" id="2_svggb"]
 [ext_resource type="PackedScene" uid="uid://bwjlqx13ye2sy" path="res://scenes/sword_player.tscn" id="3_pxbj5"]
 [ext_resource type="Texture2D" uid="uid://bdb31i5bhluqj" path="res://assets/32 Free Weapon Icons/Icons/Iicon_32_22.png" id="4_kkd5n"]
-[ext_resource type="PackedScene" path="res://scenes/coin.tscn" id="5_2rjnq"]
-[ext_resource type="PackedScene" path="res://scenes/killzone.tscn" id="6_chwyg"]
+[ext_resource type="PackedScene" uid="uid://5x6uiackw4fa" path="res://scenes/coin.tscn" id="5_2rjnq"]
+[ext_resource type="PackedScene" uid="uid://upe0adekrunx" path="res://scenes/killzone.tscn" id="6_chwyg"]
 [ext_resource type="AudioStream" uid="uid://cwo73jr6nshm7" path="res://assets/Music/AwesomeFinalDraftGJ.mp3" id="6_ipafk"]
-[ext_resource type="PackedScene" uid="uid://mttjrlqvcdbf" path="res://scenes/one_way_platform_big.tscn" id="6_l7m1g"]
-[ext_resource type="PackedScene" path="res://scenes/one_way_platform_small.tscn" id="7_kyjnp"]
-[ext_resource type="PackedScene" path="res://scenes/pig.tscn" id="8_etwnv"]
+[ext_resource type="PackedScene" uid="uid://brodjchsu5qsm" path="res://scenes/one_way_platform_big.tscn" id="6_l7m1g"]
+[ext_resource type="PackedScene" path="res://scenes/lives.tscn" id="6_u2opf"]
+[ext_resource type="PackedScene" uid="uid://1ooyai65ai6p" path="res://scenes/one_way_platform_small.tscn" id="7_kyjnp"]
+[ext_resource type="PackedScene" uid="uid://beroim3bxc3dn" path="res://scenes/pig.tscn" id="8_etwnv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0uv3l"]
 texture = ExtResource("2_567as")
@@ -329,7 +330,7 @@ tile_map_data = PackedByteArray("AAADAP3/AAABAAEAAAADAP7/AAABAAIAAAADAP//AAABAAQ
 tile_set = SubResource("TileSet_l4nga")
 
 [node name="SwordPlayer" parent="." instance=ExtResource("3_pxbj5")]
-position = Vector2(-46, -264)
+position = Vector2(432, 0)
 
 [node name="MovingParticles" type="GPUParticles2D" parent="SwordPlayer"]
 show_behind_parent = true
@@ -395,7 +396,7 @@ position = Vector2(384, -297)
 position = Vector2(355, 89)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
-position = Vector2(0, 27)
+position = Vector2(1, 30)
 shape = SubResource("WorldBoundaryShape2D_118ed")
 
 [node name="OneWayPlatforms" type="Node" parent="."]
@@ -439,3 +440,5 @@ position = Vector2(434, 17)
 
 [node name="OneWayPlatformSmall5" parent="OneWayPlatforms" instance=ExtResource("7_kyjnp")]
 position = Vector2(273, 18)
+
+[node name="Life" parent="." instance=ExtResource("6_u2opf")]

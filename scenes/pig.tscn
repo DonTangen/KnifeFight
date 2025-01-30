@@ -285,6 +285,7 @@ animation = &"Idle"
 autoplay = "Idle"
 
 [node name="Killzone" parent="." instance=ExtResource("2_21vjw")]
+collision_layer = 513
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
 position = Vector2(3, -9)
