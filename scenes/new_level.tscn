@@ -1,11 +1,12 @@
-[gd_scene load_steps=21 format=4 uid="uid://7adur8ejh6pb"]
+[gd_scene load_steps=22 format=4 uid="uid://7adur8ejh6pb"]
 
 [ext_resource type="PackedScene" uid="uid://bwjlqx13ye2sy" path="res://scenes/sword_player.tscn" id="1_6crdh"]
 [ext_resource type="Texture2D" uid="uid://bdb31i5bhluqj" path="res://assets/32 Free Weapon Icons/Icons/Iicon_32_22.png" id="2_bcqge"]
 [ext_resource type="AudioStream" uid="uid://bxodl0gj7xg3v" path="res://assets/Music/GameJamAwesomeHook.mp3" id="3_ja3ej"]
 [ext_resource type="Texture2D" uid="uid://dxclxjclegx28" path="res://assets/Sprites/14-TileSets/Decorations (32x32).png" id="4_3njxb"]
 [ext_resource type="Texture2D" uid="uid://cordc2owd3p8y" path="res://assets/Sprites/14-TileSets/Terrain (32x32).png" id="5_ptawk"]
-[ext_resource type="PackedScene" path="res://scenes/killzone.tscn" id="6_im2ec"]
+[ext_resource type="PackedScene" uid="uid://upe0adekrunx" path="res://scenes/killzone.tscn" id="6_im2ec"]
+[ext_resource type="PackedScene" uid="uid://cuukk8xcyfkac" path="res://scenes/door.tscn" id="7_xrdsj"]
 
 [sub_resource type="Shader" id="Shader_xnc8y"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's CanvasItemMaterial.
@@ -494,7 +495,7 @@ sources/0 = SubResource("TileSetAtlasSource_v0xqt")
 [node name="new level" type="Node2D"]
 
 [node name="SwordPlayer" parent="." instance=ExtResource("1_6crdh")]
-position = Vector2(206, -382)
+position = Vector2(-54, -8)
 
 [node name="MovingParticles" type="GPUParticles2D" parent="SwordPlayer"]
 show_behind_parent = true
@@ -518,6 +519,7 @@ rotation_smoothing_enabled = true
 position = Vector2(46, 264)
 stream = ExtResource("3_ja3ej")
 autoplay = true
+bus = &"Music"
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_m07g3")
@@ -538,3 +540,11 @@ position = Vector2(355, 89)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
 position = Vector2(421, 35)
 shape = SubResource("WorldBoundaryShape2D_30jru")
+
+[node name="door" parent="." instance=ExtResource("7_xrdsj")]
+position = Vector2(-54, -27)
+collision_layer = 0
+collision_mask = 0
+
+[node name="door2" parent="." instance=ExtResource("7_xrdsj")]
+position = Vector2(1297, -1980)

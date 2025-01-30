@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b0lfh36elf8e8"]
+[gd_scene load_steps=9 format=3 uid="uid://bfalyclrxivqq"]
 
 [ext_resource type="Script" path="res://scripts/delayedcannon.gd" id="1_racqc"]
 [ext_resource type="Texture2D" uid="uid://878kpyqdwrld" path="res://assets/Sprites/10-Cannon/Idle.png" id="2_qbx3b"]
