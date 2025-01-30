@@ -354,7 +354,6 @@ rotation_smoothing_enabled = true
 position = Vector2(46, 264)
 stream = ExtResource("6_ipafk")
 autoplay = true
-bus = &"Music"
 
 [node name="Enemies" type="Node" parent="."]
 
