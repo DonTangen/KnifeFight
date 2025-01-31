@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://djtjfdvck5wsb"]
+[gd_scene load_steps=8 format=3 uid="uid://jrhwdlr2bcv6"]
 
 [ext_resource type="Shader" path="res://assets/pause_menu.gdshader" id="1_jeqkk"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_qwjh6"]
+[ext_resource type="FontFile" uid="uid://d031bl66ac38n" path="res://assets/Sprites/15-Text Assets/Cybersomething.ttf" id="3_k4bku"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rcvaq"]
 shader = ExtResource("1_jeqkk")
@@ -81,14 +82,17 @@ alignment = 1
 
 [node name="Resume" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_k4bku")
 text = "Resume"
 
 [node name="Restart" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_k4bku")
 text = "Restart"
 
 [node name="Quit" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_k4bku")
 text = "Quit"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
