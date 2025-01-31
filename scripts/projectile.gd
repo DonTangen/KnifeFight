@@ -13,7 +13,7 @@ func _ready():
 	global_rotation = spawnRot
 	
 func _physics_process(_delta: float) -> void:
-	if self.is_on_wall():
+	if self.is_on_wall() or self.is_on_floor() or self.is_on_ceiling():
 		queue_free()
 	velocity = Vector2(-SPEED,0).rotated(dir)
 	move_and_slide()
