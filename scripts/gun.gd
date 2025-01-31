@@ -4,6 +4,10 @@ extends Node2D
 @onready var main = get_tree().current_scene
 @onready var bullet = load("res://scenes/bullet.tscn")
 @onready var player = get_parent().get_node("SwordPlayer")
+@onready var healthbar: ProgressBar = $CanvasLayer/Healthbar
+
+func _ready() -> void:
+	healthbar.init_health(Livescounter.gun_health)
 
 func shoot():
 	var instance = bullet.instantiate()
@@ -45,4 +49,6 @@ func _process(delta: float) -> void:
 	if ray_cast_right.is_colliding():
 		sprite_2d.flip_h = true
 		direction = -1
+	
+	healthbar.health = Livescounter.gun_health
 	position.x += direction * speed * delta
