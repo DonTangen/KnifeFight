@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://djtjfdvck5wsb"]
+[gd_scene load_steps=8 format=3 uid="uid://djtjfdvck5wsb"]
 
 [ext_resource type="Shader" path="res://assets/pause_menu.gdshader" id="1_jeqkk"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_qwjh6"]
+[ext_resource type="PackedScene" uid="uid://cy8pb8cs6vjtf" path="res://scenes/volume_slider.tscn" id="3_l671q"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rcvaq"]
 shader = ExtResource("1_jeqkk")
@@ -95,6 +96,24 @@ text = "Quit"
 libraries = {
 "": SubResource("AnimationLibrary_2a3m0")
 }
+
+[node name="PanelContainer2" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 390.0
+offset_top = 479.0
+offset_right = 799.0
+offset_bottom = 553.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Volume"
+
+[node name="HSlider" parent="PanelContainer2/VBoxContainer" instance=ExtResource("3_l671q")]
+layout_mode = 2
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]

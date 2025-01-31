@@ -1,8 +1,8 @@
-[gd_scene load_steps=27 format=4 uid="uid://dhs033vlo1wrx"]
+[gd_scene load_steps=28 format=4 uid="uid://dhs033vlo1wrx"]
 
 [ext_resource type="Texture2D" uid="uid://cordc2owd3p8y" path="res://assets/Sprites/14-TileSets/Terrain (32x32).png" id="1_676xp"]
 [ext_resource type="Texture2D" uid="uid://dxclxjclegx28" path="res://assets/Sprites/14-TileSets/Decorations (32x32).png" id="2_1gqkp"]
-[ext_resource type="PackedScene" uid="uid://brodjchsu5qsm" path="res://scenes/one_way_platform_big.tscn" id="3_2du1f"]
+[ext_resource type="PackedScene" uid="uid://mttjrlqvcdbf" path="res://scenes/one_way_platform_big.tscn" id="3_2du1f"]
 [ext_resource type="PackedScene" uid="uid://1ooyai65ai6p" path="res://scenes/one_way_platform_small.tscn" id="4_0fa03"]
 [ext_resource type="PackedScene" uid="uid://bfalyclrxivqq" path="res://vlevelcanon.tscn" id="5_d2ok8"]
 [ext_resource type="PackedScene" uid="uid://beroim3bxc3dn" path="res://scenes/pig.tscn" id="6_koe50"]
@@ -11,7 +11,8 @@
 [ext_resource type="AudioStream" uid="uid://cwo73jr6nshm7" path="res://assets/Music/AwesomeFinalDraftGJ.mp3" id="8_uoa1s"]
 [ext_resource type="PackedScene" uid="uid://cuukk8xcyfkac" path="res://scenes/door.tscn" id="9_dxad8"]
 [ext_resource type="PackedScene" uid="uid://bduynmhcdwr4o" path="res://scenes/killzone_boundaries.tscn" id="10_vagpb"]
-[ext_resource type="PackedScene" path="res://scenes/lives.tscn" id="11_q4h3x"]
+[ext_resource type="PackedScene" uid="uid://biaed4vdyyi1j" path="res://scenes/lives.tscn" id="11_q4h3x"]
+[ext_resource type="PackedScene" uid="uid://djtjfdvck5wsb" path="res://scenes/pause_menu.tscn" id="13_43hpk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dg0k2"]
 texture = ExtResource("1_676xp")
@@ -697,3 +698,5 @@ position = Vector2(404.691, 71.6581)
 shape = SubResource("WorldBoundaryShape2D_fnvuo")
 
 [node name="Life" parent="." instance=ExtResource("11_q4h3x")]
+
+[node name="PauseMenu" parent="Life" instance=ExtResource("13_43hpk")]

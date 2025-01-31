@@ -41,6 +41,7 @@ var is_attacking = 0
 @onready var ray_cast_14: RayCast2D = $RayCasts/RayCast2D14
 @onready var timer: Timer = $Timer
 @onready var timer2: Timer = $Timer2
+@onready var timer3: Timer = $Timer3
 @onready var moving_particles: GPUParticles2D = $MovingParticles
 
 func _integrate_forces(_state: PhysicsDirectBodyState2D) -> void:
@@ -265,4 +266,9 @@ func _on_player_kill_area_entered(area: Area2D) -> void:
 		Livescounter.gun_health -= 1
 		if Livescounter.gun_health == 0:
 			area.get_parent().queue_free()
+			timer3.start()
 	if (is_attacking or is_lunging) and !area.get_parent().name == "Gun": area.get_parent().queue_free()
+
+
+func _on_timer_3_timeout() -> void:
+	get_tree().change_scene_to_file("res://scenes/credit scene.tscn")
