@@ -19,7 +19,6 @@ var blink = 0
 var taking_damage = 0
 var timer2_started = 0
 var is_attacking = 0
-var gun_health = 3
 
 @onready var rb: RigidBody2D = $"."
 @onready var sprite: Sprite2D = $Sprite2D
@@ -263,8 +262,7 @@ func _on_timer_2_timeout() -> void:
 
 func _on_player_kill_area_entered(area: Area2D) -> void:
 	if is_attacking and area.get_parent().name == "Gun":
-		gun_health -= 1
-		print(gun_health)
-		if gun_health == 0:
+		Livescounter.gun_health -= 1
+		if Livescounter.gun_health == 0:
 			area.get_parent().queue_free()
 	if (is_attacking or is_lunging) and !area.get_parent().name == "Gun": area.get_parent().queue_free()
