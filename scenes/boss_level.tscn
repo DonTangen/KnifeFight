@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://beng4i8ln6wrs"]
+[gd_scene load_steps=22 format=4 uid="uid://beng4i8ln6wrs"]
 
 [ext_resource type="PackedScene" uid="uid://bwjlqx13ye2sy" path="res://scenes/sword_player.tscn" id="1_dr3y7"]
 [ext_resource type="Texture2D" uid="uid://cordc2owd3p8y" path="res://assets/Sprites/14-TileSets/Terrain (32x32).png" id="2_giyyb"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cuukk8xcyfkac" path="res://scenes/door.tscn" id="8_orv6b"]
 [ext_resource type="PackedScene" uid="uid://biaed4vdyyi1j" path="res://scenes/lives.tscn" id="9_1yuum"]
 [ext_resource type="PackedScene" uid="uid://dircnsws3tlyw" path="res://scenes/gun.tscn" id="10_2gy1m"]
+[ext_resource type="PackedScene" uid="uid://djtjfdvck5wsb" path="res://scenes/pause_menu.tscn" id="10_xdeld"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1t80d"]
 texture = ExtResource("2_giyyb")
@@ -455,7 +456,9 @@ stream = ExtResource("7_h6vfi")
 autoplay = true
 bus = &"Music"
 
-[node name="CanvasLayer" parent="." instance=ExtResource("9_1yuum")]
+[node name="Life" parent="." instance=ExtResource("9_1yuum")]
+
+[node name="PauseMenu" parent="Life" instance=ExtResource("10_xdeld")]
 
 [node name="door" parent="." instance=ExtResource("8_orv6b")]
 position = Vector2(216, -60)

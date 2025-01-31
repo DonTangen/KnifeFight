@@ -1,16 +1,17 @@
-[gd_scene load_steps=21 format=4 uid="uid://blvuqfunceicg"]
+[gd_scene load_steps=22 format=4 uid="uid://blvuqfunceicg"]
 
 [ext_resource type="PackedScene" uid="uid://bwjlqx13ye2sy" path="res://scenes/sword_player.tscn" id="1_00xxu"]
-[ext_resource type="PackedScene" path="res://scenes/lives.tscn" id="1_gt6uw"]
+[ext_resource type="PackedScene" uid="uid://biaed4vdyyi1j" path="res://scenes/lives.tscn" id="1_gt6uw"]
 [ext_resource type="PackedScene" uid="uid://cuukk8xcyfkac" path="res://scenes/door.tscn" id="2_e4ppc"]
 [ext_resource type="Texture2D" uid="uid://cordc2owd3p8y" path="res://assets/Sprites/14-TileSets/Terrain (32x32).png" id="2_fdxiq"]
 [ext_resource type="Texture2D" uid="uid://bdb31i5bhluqj" path="res://assets/32 Free Weapon Icons/Icons/Iicon_32_22.png" id="2_vtod4"]
 [ext_resource type="Texture2D" uid="uid://dxclxjclegx28" path="res://assets/Sprites/14-TileSets/Decorations (32x32).png" id="3_njvgs"]
 [ext_resource type="AudioStream" uid="uid://cwo73jr6nshm7" path="res://assets/Music/AwesomeFinalDraftGJ.mp3" id="4_bem3x"]
 [ext_resource type="PackedScene" uid="uid://duvf0jv1pps3o" path="res://scenes/tlevelcanon.tscn" id="7_52wqq"]
-[ext_resource type="PackedScene" uid="uid://brodjchsu5qsm" path="res://scenes/one_way_platform_big.tscn" id="7_cmm8l"]
+[ext_resource type="PackedScene" uid="uid://mttjrlqvcdbf" path="res://scenes/one_way_platform_big.tscn" id="7_cmm8l"]
 [ext_resource type="PackedScene" uid="uid://bduynmhcdwr4o" path="res://scenes/killzone_boundaries.tscn" id="8_ustsj"]
 [ext_resource type="PackedScene" uid="uid://beroim3bxc3dn" path="res://scenes/pig.tscn" id="10_3e1j3"]
+[ext_resource type="PackedScene" uid="uid://djtjfdvck5wsb" path="res://scenes/pause_menu.tscn" id="12_174jr"]
 
 [sub_resource type="Shader" id="Shader_xcpg6"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's CanvasItemMaterial.
@@ -271,6 +272,8 @@ distance = 8.0
 [node name="tutorial" type="Node2D"]
 
 [node name="Lives" parent="." instance=ExtResource("1_gt6uw")]
+
+[node name="PauseMenu" parent="Lives" instance=ExtResource("12_174jr")]
 
 [node name="Door" parent="." instance=ExtResource("2_e4ppc")]
 z_index = 1
