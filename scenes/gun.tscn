@@ -1,13 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dircnsws3tlyw"]
+[gd_scene load_steps=7 format=3 uid="uid://dircnsws3tlyw"]
 
 [ext_resource type="Script" path="res://scripts/gun.gd" id="1_dpmg6"]
 [ext_resource type="Texture2D" uid="uid://dhgnox7fsges6" path="res://assets/vector/vector_guns.svg" id="2_ioexl"]
 [ext_resource type="Texture2D" uid="uid://cw2tlk5hsru18" path="res://assets/vector/eyes.png" id="3_akwvo"]
+[ext_resource type="PackedScene" uid="uid://m1gd68gl3hqo" path="res://scenes/healthbar.tscn" id="3_w7ojw"]
+[ext_resource type="FontFile" uid="uid://d031bl66ac38n" path="res://assets/Sprites/15-Text Assets/Cybersomething.ttf" id="4_v4pm7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rxixf"]
-size = Vector2(103.333, 36.6667)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gie4a"]
+size = Vector2(253.333, 45)
 
 [node name="Gun" type="Node2D"]
 scale = Vector2(0.3, 0.3)
@@ -17,7 +17,11 @@ script = ExtResource("1_dpmg6")
 position = Vector2(0, 16.6667)
 texture = ExtResource("2_ioexl")
 region_enabled = true
-region_rect = Rect2(487.249, 177.515, 171.187, 105.565)
+region_rect = Rect2(502, 348, 425, 133)
+
+[node name="Eyes" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(60, -53.3334)
+texture = ExtResource("3_akwvo")
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
@@ -26,7 +30,7 @@ autostart = true
 collision_layer = 513
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
-position = Vector2(3.8147e-06, 10)
+position = Vector2(73.3333, -12.5)
 shape = SubResource("RectangleShape2D_rxixf")
 
 [node name="RayCast_left" type="RayCast2D" parent="."]
@@ -43,19 +47,29 @@ target_position = Vector2(213.333, 0)
 collision_mask = 16
 collide_with_areas = true
 
-[node name="VectorGuns" type="Sprite2D" parent="."]
-position = Vector2(496.667, 46.6667)
-texture = ExtResource("2_ioexl")
-region_enabled = true
-region_rect = Rect2(461.189, 334.612, 463.142, 149.758)
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Eyes" type="Sprite2D" parent="."]
-position = Vector2(573.333, -10)
-texture = ExtResource("3_akwvo")
+[node name="Healthbar" parent="CanvasLayer" instance=ExtResource("3_w7ojw")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -296.0
+offset_top = -78.0
+offset_right = -56.0
+offset_bottom = -74.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(2.62125, 2.66135)
 
-[node name="Fist" type="Sprite2D" parent="."]
-position = Vector2(630, 220)
-texture = SubResource("CompressedTexture2D_gie4a")
-region_enabled = true
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 517.0
+offset_top = 594.0
+offset_right = 587.0
+offset_bottom = 617.0
+scale = Vector2(1.55941, 1.4156)
+theme_override_fonts/font = ExtResource("4_v4pm7")
+text = "King Gun"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
